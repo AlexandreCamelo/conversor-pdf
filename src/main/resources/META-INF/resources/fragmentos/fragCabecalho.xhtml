@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<meta name="viewport" content="width=device-width" />
+	<link rel="stylesheet" href="css/fragCabecalho.css" />
+
+	<style>
+.ui-megamenu {
+	width: 100% !important;
+	border: none !important;
+}
+</style>
+
+
+</h:head>
+
+<h:body>
+
+
+	<h:form>
+
+
+			<div class="menuComputador">
+
+
+
+				<div style="display: flex; align-items: center; width: 100%;">
+
+					<p:link href="inicio.xhtml">
+						<p:graphicImage url="/imagens/PDFPagesMenor.png"
+							styleClass="tamanho-logo-menu" />
+					</p:link>
+					<p:megaMenu id="megaAlex" orientation="horizontal"
+						autoDisplay="false"
+						style="background-color:#FFF; padding: 0px !important;">
+
+						<p:submenu id="idParaPDF" label="para pdf" icon="iconeParaPDF">
+							<p:column width="200">
+								<p:submenu>
+									<p:menuitem value="imagem / pdf" icon="iconeImagemPDF"
+										url="convImagemPDF.xhtml" />
+								</p:submenu>
+							</p:column>
+							<p:column>
+								<p:submenu>
+									<p:menuitem value="txt / pdf" icon="iconeTxtPDF"
+										url="convTextoPDF.xhtml" />
+								</p:submenu>
+							</p:column>
+
+						</p:submenu>
+
+						<p:submenu id="idDePDF" label="de pdf" icon="iconeDePDF">
+
+							<p:column>
+								<p:submenu>
+									<p:menuitem value="pdf / docx" icon="iconePDFDocx"
+										url="convPDFDocx.xhtml" />
+								</p:submenu>
+							</p:column>
+
+							<p:column>
+								<p:submenu>
+									<p:menuitem value="pdf / imagem" icon="iconePDFImagem"
+										url="convPDFImagem.xhtml" />
+								</p:submenu>
+							</p:column>
+
+							<p:column>
+								<p:submenu>
+									<p:menuitem value="pdf / texto" icon="iconePDFTxt"
+										url="convPDFTexto.xhtml" />
+								</p:submenu>
+							</p:column>
+
+						</p:submenu>
+
+
+						<p:submenu id="editarPDF" label="editar pdf" icon="iconeEditarPDF">
+
+							<p:column>
+								<p:submenu>
+									<p:menuitem value="separar" icon="iconeSepararPDF"
+										url="separarPDF.xhtml" />
+								</p:submenu>
+							</p:column>
+							<p:column>
+								<p:submenu>
+									<p:menuitem value="girar" icon="iconeGirarPDF" />
+								</p:submenu>
+							</p:column>
+						</p:submenu>
+
+						<p:menuitem value="inicio" icon="iconeInicio" url="inicio.xhtml" />
+
+
+
+
+					</p:megaMenu>
+				</div>
+
+			</div>
+
+		<div class="menuCelular">
+			<div
+				style="display: flex; justify-content: space-between; align-items: center; padding-left: 10px; width: 100%; background-color: #FFF;">
+				<p:graphicImage url="/imagens/PDFPagesMenor.png"
+					styleClass="tamanho-logo-menu" />
+				<p:commandButton id="botaoGatilho" type="button" icon="pi pi-bars" />
+
+
+				<p:menu overlay="true" trigger="botaoGatilho" my="left top"
+					at="left bottom" collision="flipfit" maxHeight="70%">
+
+					<p:submenu id="lblParaPdfCel" label="para pdf">
+						<p:menuitem value="imagem / pdf" icon="iconeImagemPDF"
+							url="convImagemPDF.xhtml"
+							style="padding: 5px 0px 0px 0px !important;" />
+						<p:menuitem value="txt / pdf" icon="iconeTxtPDF"
+							url="convTextoPDF.xhtml"
+							style="padding: 5px 0px 0px 0px !important;" />
+					</p:submenu>
+
+					<p:separator />
+
+
+					<p:submenu label="de pdf" style="padding-bottom: 5px !important;">
+						<p:menuitem value="pdf > docx" icon="iconePDFDocx"
+							url="convPDFDocx.xhtml"
+							style="padding: 5px 0px 0px 0px !important;" />
+
+						<p:menuitem value="pdf / imagem" icon="iconePDFImagem"
+							url="convPDFImagem.xhtml"
+							style="padding: 5px 0px 0px 0px !important;" />
+
+						<p:menuitem value="pdf / texto" icon="iconePDFTxt"
+							url="convPDFTexto.xhtml"
+							style="padding: 5px 0px 0px 0px !important;" />
+
+					</p:submenu>
+
+					<p:separator />
+
+					<p:submenu label="editar pdf">
+
+						<p:menuitem value="separar" icon="iconeSepararPDF"
+							url="separarPDF.xhtml"
+							style="padding: 5px 0px 0px 0px !important;" />
+						<p:menuitem value="girar" icon="iconeGirarPDF"
+							style="padding: 5px 0px 0px 0px !important;" />
+					</p:submenu>
+
+				</p:menu>
+			</div>
+		</div>
+	</h:form>
+
+
+
+
+
+</h:body>
+</html>

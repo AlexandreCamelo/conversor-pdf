@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Não encontrada</title>
+
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/estilogeral.css}" />
+<link rel="icon" th:href="@{/imagens/favicon64.png}">
+
+
+<style>
+
+input {
+	margin: 10px;
+	
+}
+
+
+button{
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	margin-top: 15px;
+}
+
+
+td, thead, th, tr {
+	border: 2px solid #DCDCDC;
+	padding: 0px;
+	margin: 0px;
+	
+}
+
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+
+
+		<div style="display: flex; justify-content: center; align-items: center; height: 100vh; ">
+				
+				
+				<div>
+				
+				<div style="text-align: center; color: #285C00; font-size: 30px; font-weight: bold;">
+					NÃO ENCONTRADA
+				</div>
+				
+				<div style="text-align: center; color: #285C00; font-size: 20px; font-weight: bold;">
+					A página que você digitou não foi encontrada. 
+				</div>
+				
+				<div style="text-align: center; color: #285C00; font-size: 20px; font-weight: bold;">
+					Corrija e tente novamente. 
+				</div>
+				
+				
+				<div style="text-align: center; margin-top: 30px;">
+					<img th:src="@{/imagens/pdfER.png}" style="height: 100px; width: auto;"/>  
+				</div>
+
+
+				<div style="text-align: center; margin-top: 30px;">
+					<a href="/Conversoes/inicio.xhtml" class="btn btn-primary">Ir para a página inicial</a>
+				</div>
+					
+
+
+				
+				</div>
+		
+		</div>
+
+
+	<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+
+
+
+
+
+
+</body>
+</html>

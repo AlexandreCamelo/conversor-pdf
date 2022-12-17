@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<!-- 	<meta name="viewport" content="width=device-width" /> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="content-language" content="pt-br" />
+	<meta http-equiv="content-type" content="text/html" />
+	<meta http-equiv="cache-control" content="public" />
+	<meta http-equiv="pragma" content="public" />
+	<meta name="copyright" content="2020 - Alexandre Fernandes Camelo" />
+	<meta name="author" content="Alexandre Fernandes Camelo" />
+	<meta name="description"
+		content="Conversoes PDF. Converta DE e PARA PDF. Diversas ferramentas para facilitar sua vida, trabalhando com PDF's" />
+	<meta name="keywords"
+		content="PDF, converter PDF, PDF para word, PDF para texto, PDF para HTML, PDF para imagem, imagem para PDF, OCR PDF, PDF OCR, ferramentas PDF" />
+	<meta name="rating" content="general" />
+	<meta name="robots" content="follow" />
+
+
+
+	<link rel="stylesheet" href="css/convPDFTexto.css" />
+	<title>PDF para Texto</title>
+	<link rel="icon" href="imagens/favicon64.png" />
+
+	<f:event listener="#{configPrimefacesTemas.mudaTema('saga')}"
+		type="preRenderView"></f:event>
+
+
+</h:head>
+
+
+
+<h:body>
+
+	<ui:include id="inc2" src="fragmentos/fragCabecalho.xhtml" />
+
+	<p:dialog modal="true" widgetVar="statusDialog" header="Convertendo"
+		draggable="false" closable="false" resizable="false">
+		<i id="spinAlex" class="pi pi-spinner pi-spin" style="font-size: 5rem"></i>
+	</p:dialog>
+
+	<ui:include id="incProgEterna" src="fragmentos/barraProgEterna.xhtml" />
+	<ui:include id="incProgresso" src="fragmentos/barraProgresso.xhtml" />
+
+
+	<h:form id="formPrincipal" enctype="multipart/form-data">
+
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+
+
+		<!-- GERAL -->
+		<div
+			style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center">
+
+
+
+
+
+			<!-- DIV PR. ESQ -->
+			<div class="div-propaganda">
+				<p:graphicImage url="/imagens/pdfER.png" styleClass="tamanho-logo" />
+				<p:outputLabel value="espaço para propaganda"
+					style="font-family: alex; font-size: 30px;" />
+			</div>
+			<!-- FIM PR. ESQ -->
+
+
+
+
+			<!-- DIV CONT. -->
+			<div class="div-conteudo">
+				<p:outputLabel value="pdf para texto" styleClass="titulo" />
+				<div
+					style="display: flex; width: 100%; justify-content: center; align-items: center; flex-direction: column;">
+					<p:selectOneMenu id="cboLinguagemOCR" autoWidth="false"
+						placeholder="Escolha o idioma do texto"
+						style="width: 400px; height: 100px; margin: 10px 10px 0px 10px;"
+						value="#{convPDFTextoBean.linguagemOCR}">
+						<f:selectItem noSelectionOption="true" itemLabel="" />
+						<f:selectItem itemValue="eng" itemLabel="Inglês" />
+						<f:selectItem itemValue="por" itemLabel="Português" />
+						<f:selectItem itemValue="chi_sim"
+							itemLabel="中国人  / Chinês / Chines" />
+						<f:selectItem itemValue="deu"
+							itemLabel="Deutsch / German / Alemão" />
+						<f:selectItem itemValue="spa"
+							itemLabel="Español / Espanhol / Spanish" />
+						<f:selectItem itemValue="fra"
+							itemLabel="Français / French / Francês" />
+						<f:selectItem itemValue="hin" itemLabel="हिन्दी / Hindi" />
+						<f:selectItem itemValue="ita" itemLabel="Italian / Italiano" />
+						<f:selectItem itemValue="jpn" itemLabel="日本 / Japanese / Japonês" />
+						<f:selectItem itemValue="rus" itemLabel="ロシア / Russian / Russo" />
+						<p:ajax event="change"
+							listener="#{convPDFTextoBean.mostrarBotaoOCR()}"
+							update="formPrincipal:messages" />
+					</p:selectOneMenu>
+
+					<p:staticMessage id="mensagemIdioma" severity="warn"
+						summary="ESCOLHA BEM O IDIOMA"
+						detail="A escolha do idioma correto fará o sistema reconhecer o texto com mais precisão."
+						style="width: 100%; margin-top: 5px;" />
+
+					<p:staticMessage id="mensagemQualidadeImagem" severity="warn"
+						summary="QUALIDADE DA IMAGEM"
+						detail="Uma boa qualidade de imagem gerará um reconhecimento de texto melhor."
+						style="width: 100%; margin-top: 5px;" />
+				</div>
+
+				<div style="display: flex; width: 100%; justify-content: center;">
+					<p:commandButton id="btnFazOCR2" value="reconhecer" ajax="false"
+						action="#{convPDFTextoBean.fazOCRArquivo}"
+						onclick="PF('dlgBarraProgresso').show(); PF('barraProgr').start();"
+						icon="iconeEnviarArquivo"
+						styleClass="p-mt-3 ui-button-outlined p-d-block"
+						style="margin: 30px 0px 0px 0px;" />
+
+				</div>
+
+
+				<div id="divPainelCasoDown"
+					style="display: flex; justify-content: center !important;">
+					<p:panelGrid id="painelCasoDownload">
+						<p:row
+							style="display: flex !important; 
+							justify-content: center !important; text-align: center; align-items: center; margin-top: 10px;">
+
+							<p:column id="colunaNomeArquivo"
+								style="#{convPDFTextoBean.estNomeArquivoABaixar}">
+
+								<p:outputLabel id="lblNomeArquivo"
+									value="#{convPDFTextoBean.nomeArquivoEnviadoTxt}"
+									style="#{convPDFTextoBean.estNomeArquivoABaixar}" />
+
+								<p:commandLink id="btnBaixarInvisivel"
+									actionListener="#{convPDFTextoBean.baixarArquivoConvertido}"
+									ajax="false" onclick="escondeDownloadEMostraRedirecionar();">
+
+									<div id="divBaixar"
+										style="#{convPDFTextoBean.estiloLinkDownload}">
+
+										<p:graphicImage url="imagens/baixar.png"
+											style="height: 80px; width: 80px;" />
+
+										baixar
+
+									</div>
+								</p:commandLink>
+
+
+								<div id="divBaixar2"
+									style="display: flex-block; align-items: flex-start !important; width: 100%; justify-content: flex-start !important">
+
+									<div
+										style="display: flex; align-items: flex-start !important; width: 100%; justify-content: center !important;">
+										<p:commandButton id="outroArquivoAoBaixar"
+											value="converter outro arquivo" ajax="true"
+											onclick="redirecionarParaAMesmaPagina();"
+											actionListener="#{convPDFTextoBean.apagarPastaArquivos}"
+											icon="iconeOutroArquivoAoBaixar"
+											styleClass="p-mt-3 ui-button-outlined p-d-block"
+											style="margin-top: 20px;" />
+									</div>
+								</div>
+							</p:column>
+						</p:row>
+
+
+
+					</p:panelGrid>
+
+
+					<p:commandButton id="outroArquivo" value="converter outro arquivo"
+						ajax="true" onclick="redirecionarParaAMesmaPagina();"
+						actionListener="#{convPDFTextoBean.apagarPastaArquivos}"
+						icon="iconeOutroArquivo"
+						styleClass="p-mt-3 ui-button-outlined p-d-block"
+						style="margin-top: 10px;" />
+
+					<p:commandButton id="refOperacao" value="refazer operação"
+						ajax="true" onclick="redirecionarParaAMesmaPagina();"
+						actionListener="#{convPDFTextoBean.apagarPastaArquivos}"
+						icon="iconeArquivo"
+						styleClass="p-mt-3 ui-button-outlined p-d-block"
+						style="margin-top: 10px;" />
+
+				</div>
+
+
+				<div id="captcha"
+					style="display: none; margin: 10px 0px 0px 10px; justify-content: center !important;">
+					<ui:include src="fragmentos/camelCaptcha.xhtml" />
+				</div>
+
+
+				<div id="divEscolha" class="divEscolha">
+
+
+					<p:fileUpload id="escolher" widgetVar="widEscolher"
+						value="#{convPDFTextoBean.arquivoEnviado}" mode="simple"
+						label="escolher arquivo" skinSimple="true"
+						chooseIcon="iconeArquivo" virusScan="true"
+						style="margin-left: 0px !important; padding-left: 0px !important;" />
+
+					<p:commandButton id="idEnviar" widgetVar="widEnviar"
+						value="converter" ajax="false"
+						action="#{convPDFTextoBean.converterPDFParaTexto}"
+						onclick="PF('dlgBarraEterna').show();" icon="iconeEnviarArquivo"
+						styleClass="p-mt-3 ui-button-outlined p-d-block" />
+
+				</div>
+
+			</div>
+			<!-- FIM DIV CONT -->
+
+
+
+
+			<!-- DIV PR. DIR. -->
+			<div class="div-propaganda">
+				<p:graphicImage url="/imagens/pdfER.png" styleClass="tamanho-logo" />
+				<p:outputLabel value="esp. prop."
+					style="font-family: alex; font-size: 30px; test-align: center;" />
+
+
+			</div>
+			<!-- FIM DIV PR. DIR. -->
+
+
+		</div>
+		<!-- FIM DIV GERAL -->
+
+
+
+		<p:commandLink style="font-size: 2px; color: #FFF;"
+			value="parar processo" id="botaoPararProcessosInvisivel"
+			action="#{convPDFTextoBean.pararProcessos}" />
+
+		<p:dialog widgetVar="dlgOCR" modal="true"
+			header="Acho que não existe texto reconhecível" responsive="true"
+			style="margin-right: 10px;">
+			<div
+				style="display: flex; width: 100%; justify-content: space-around; align-items: center; flex-wrap: wrap;">
+				<div style="width: 100px;">
+					<p:graphicImage url="/imagens/texto2.png"
+						style="height: auto; width: 100px;" />
+				</div>
+
+				<div class="divTextoDialogOCR">
+					<p class="textoDialogOCR">
+						Parece que não existe texto reconhecível no seu PDF.<br /> <br />
+						Deseja fazer reconhecimento de texto?<br /> <br />
+					</p>
+					<h4 class="textoDialogOCR">Isso pode durar vários minutos.</h4>
+				</div>
+			</div>
+			<div class="divBotoesDialogOCR">
+				<p:button style="height: 50px; margin-top: 3px;"
+					value="reconhecer texto" ajax="true"
+					onclick="PF('dlgOCR').hide(); sumirEscolherMostrarLinguagens();"
+					icon="pi pi-align-left" />
+				<p:commandButton style="height: 50px; margin-top: 3px;"
+					value="converter sem reconhecer" ajax="false"
+					onclick="PF('dlgOCR').hide(); PF('dlgBarraEterna').show();"
+					action="#{convPDFTextoBean.converterPDFParaTextoSemOCR}"
+					icon="pi pi-refresh" />
+				<p:button style="height: 50px; margin-top: 3px;" value="cancelar"
+					ajax="true" onclick="redirecionarParaAMesmaPagina();"
+					icon="pi pi-times" />
+			</div>
+		</p:dialog>
+
+
+
+
+
+
+	</h:form>
+
+
+
+	<script src="js/convPDFTexto.js"></script>
+
+
+</h:body>
+</html>

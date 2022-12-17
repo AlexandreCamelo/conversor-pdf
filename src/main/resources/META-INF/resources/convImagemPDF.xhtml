@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<!-- 	<meta name="viewport" content="width=device-width" /> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="content-language" content="pt-br" />
+	<meta http-equiv="content-type" content="text/html" />
+	<meta http-equiv="cache-control" content="public" />
+	<meta http-equiv="pragma" content="public" />
+	<meta name="copyright" content="2020 - Alexandre Fernandes Camelo" />
+	<meta name="author" content="Alexandre Fernandes Camelo" />
+	<meta name="description"
+		content="Conversoes PDF. Converta DE e PARA PDF. Diversas ferramentas para facilitar sua vida, trabalhando com PDF's" />
+	<meta name="keywords"
+		content="PDF, converter PDF, PDF para word, PDF para texto, PDF para HTML, PDF para imagem, imagem para PDF, OCR PDF, PDF OCR, ferramentas PDF" />
+	<meta name="rating" content="general" />
+	<meta name="robots" content="follow" />
+
+
+
+
+
+	<link rel="stylesheet" href="css/convImagemPDF.css" />
+	<title>imagem para PDF</title>
+	<link rel="icon" href="imagens/favicon64.png" />
+
+	<f:event listener="#{configPrimefacesTemas.mudaTema('saga')}"
+		type="preRenderView"></f:event>
+
+
+
+
+
+	<style>
+#formPrincipal\:mensagemPng {
+	text-align: center !important;
+}
+
+#formPrincipal\:nbrDiminuir_input {
+	width: 100px !important;
+}
+
+#formPrincipal\:nbrAumentar_input {
+	width: 100px !important;
+}
+</style>
+
+
+
+</h:head>
+
+
+
+<h:body>
+
+	<ui:include id="inc2" src="fragmentos/fragCabecalho.xhtml" />
+	<ui:include id="incProgresso" src="fragmentos/barraProgresso.xhtml" />
+
+
+	<h:form id="formPrincipal" enctype="multipart/form-data">
+
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+
+
+		<!-- GERAL -->
+		<div
+			style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center">
+
+
+
+
+
+			<!-- DIV PR. ESQ -->
+			<div class="div-propaganda">
+				<p:graphicImage url="/imagens/pdfER.png" styleClass="tamanho-logo" />
+				<p:outputLabel value="espaço para propaganda"
+					style="font-family: alex; font-size: 30px;" />
+			</div>
+			<!-- FIM PR. ESQ -->
+
+
+
+
+			<!-- DIV CONT. -->
+			<div class="div-conteudo">
+				<p:outputLabel value="imagem para pdf" styleClass="titulo" />
+				<p:staticMessage id="mensagemPng" severity="info"
+					detail="Tipos de imagem aceitos: jpg, jpeg, bmp, gif e tiff."
+					style="width: 100%; margin: 5px 5px 0px 0px !important;" />
+
+
+				<p:button id="btnAjustarImagem" widgetVar="widAjustarImagem"
+					value="ajustar imagens" ajax="false" style="margin-top: 20px;"
+					onclick="mostrarAjustarImagens();" icon="pi pi-images" />
+
+				<p:button id="btnFecharAjustarImagem" widgetVar="widAjustarImagem"
+					value="fechar ajuste de imagens" ajax="false"
+					style="margin-top: 20px;" onclick="esconderAjustarImagens();"
+					icon="pi pi-times" />
+
+
+				<div id="divRegularImagem" class="div-regular-imagem">
+
+					<div
+						style="display: flex; align-items: center !important; justify-content: center; margin-top: 20px;">
+						<p:outputLabel id="lblTamImagemMais"
+							styleClass="fontePadrao fonteTamanhoImagens" value="aumentar em" />
+
+						<p:inputNumber id="nbrAumentar"
+							value="#{convImagemPDFBean.aumentar}" decimalPlaces="2" />
+
+						<p:commandButton value="+"
+							action="#{convImagemPDFBean.aumentarImagemMais}"
+							update="formPrincipal:nbrAumentar formPrincipal:nbrDiminuir"
+							style="margin: 0px 2px 0px 5px !important;" />
+						<p:commandButton value="-"
+							action="#{convImagemPDFBean.aumentarImagemMenos}"
+							update="formPrincipal:nbrAumentar formPrincipal:nbrDiminuir"
+							style="margin: 0px 0px 0px 0px !important;" />
+
+
+
+
+					</div>
+					<br />
+					<div
+						style="display: flex; align-items: center !important; justify-content: center; margin-top: 20px;">
+						<p:outputLabel id="lblTamImagemMenos"
+							styleClass="fontePadrao fonteTamanhoImagens" value="diminuir em" />
+
+						<p:inputNumber id="nbrDiminuir"
+							value="#{convImagemPDFBean.diminuir}" decimalPlaces="2" />
+
+						<p:commandButton value="+"
+							action="#{convImagemPDFBean.diminuirImagemMais}"
+							update="formPrincipal:nbrAumentar formPrincipal:nbrDiminuir"
+							style="margin: 0px 2px 0px 5px !important;" />
+						<p:commandButton value="-"
+							action="#{convImagemPDFBean.diminuirImagemMenos}"
+							update="formPrincipal:nbrAumentar formPrincipal:nbrDiminuir"
+							style="margin: 0px 0px 0px 0px !important;" />
+					</div>
+
+					<div
+						style="display: flex; align-items: flex-start !important; flex-wrap: wrap; justify-content: center !important;">
+
+						<div style="display: block;">
+							<p:outputLabel styleClass="fontePadrao fonte12 fontePreta"
+								style="text-align: left !important; margin-bottom: 10px !important;"
+								value="■ Se as imagens ficarem maiores ou menores que o previsto, ajuste isso aqui." />
+							<br />
+							<p:outputLabel styleClass="fontePadrao fonte12 fontePreta"
+								style="text-align: left !important;"
+								value="■ O número escolhido definirá em quantas vezes as imagens crescerão ou diminuirão." />
+
+							<br />
+							<p:outputLabel styleClass="fontePadrao fonte12 fontePreta"
+								style="text-align: left !important; margin-bottom: 30px !important;"
+								value="■ Se tudo estiver OK, não altere esse campo." />
+						</div>
+					</div>
+
+					<br /> <br />
+					<div
+						style="display: flex; align-items: center !important; justify-content: center; margin-top: 20px;">
+						<p:outputLabel styleClass="fontePadrao fonteTamanhoImagens"
+							value="uma imagem por página" />
+
+						<p:toggleSwitch value="#{convImagemPDFBean.umaImagemPorPagina}" />
+
+					</div>
+					<br />
+
+				</div>
+
+
+
+				<div id="captcha"
+					style="display: none; margin: 10px 0px 0px 10px; justify-content: center !important;">
+					<ui:include id="incProgresso" src="fragmentos/camelCaptcha.xhtml" />
+				</div>
+
+
+
+
+				<div id="divPainelCasoDown"
+					style="display: flex; justify-content: center !important;">
+					<p:panelGrid id="painelCasoDownload">
+						<p:row
+							style="display: flex !important; 
+							justify-content: center !important; text-align: center; align-items: center; margin-top: 10px;">
+
+							<p:column id="colunaNomeArquivo"
+								style="#{convImagemPDFBean.estNomeArquivoABaixar}">
+
+								<p:outputLabel id="lblNomeArquivo"
+									value="#{convImagemPDFBean.nomeArquivoEnviadoJpegOuZip}"
+									style="#{convImagemPDFBean.estNomeArquivoABaixar}" />
+
+								<p:commandLink id="btnBaixarInvisivel"
+									actionListener="#{convImagemPDFBean.baixarArquivoConvertido}"
+									ajax="false" onclick="escondeDownloadEMostraRedirecionar();">
+
+									<div id="divBaixar"
+										style="#{convImagemPDFBean.estiloLinkDownload}">
+
+										<p:graphicImage url="imagens/baixar.png"
+											style="height: 80px; width: 80px;" />
+										baixar
+									</div>
+								</p:commandLink>
+
+
+								<div id="divBaixar2"
+									style="display: flex-block; align-items: flex-start !important; width: 100%; justify-content: flex-start !important">
+									<div
+										style="display: flex; align-items: flex-start !important; width: 100%; justify-content: center !important;">
+										<p:commandButton id="outroArquivoAoBaixar"
+											value="converter outro arquivo" ajax="true"
+											onclick="redirecionarParaAMesmaPagina();"
+											actionListener="#{convImagemPDFBean.apagarPastaArquivos}"
+											icon="iconeOutroArquivoAoBaixar"
+											styleClass="p-mt-3 ui-button-outlined p-d-block"
+											style="margin-top: 20px;" />
+									</div>
+								</div>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+
+
+					<p:commandButton id="outroArquivo" value="converter outro arquivo"
+						ajax="true" onclick="redirecionarParaAMesmaPagina();"
+						actionListener="#{convImagemPDFBean.apagarPastaArquivos}"
+						icon="iconeOutroArquivo"
+						styleClass="p-mt-3 ui-button-outlined p-d-block"
+						style="margin-top: 10px;" />
+
+					<p:commandButton id="refOperacao" value="refazer operação"
+						ajax="true" onclick="redirecionarParaAMesmaPagina();"
+						actionListener="#{convImagemPDFBean.apagarPastaArquivos}"
+						icon="iconeArquivo"
+						styleClass="p-mt-3 ui-button-outlined p-d-block"
+						style="margin-top: 10px;" />
+				</div>
+
+			</div>
+
+
+
+
+			<div id="divEscolha" class="divEscolha">
+
+				<p:fileUpload id="escolher" widgetVar="widEscolher"
+					value="#{convImagemPDFBean.arquivosEnviados}" mode="simple"
+					label="escolher imagens" skinSimple="true"
+					chooseIcon="iconeArquivo" virusScan="true" multiple="true"
+					style="margin-left: 0px !important; padding-left: 0px !important;" />
+
+				<p:commandButton id="idEnviar" widgetVar="widEnviar"
+					value="converter" ajax="false"
+					action="#{convImagemPDFBean.converterFotosParaPDF}"
+					onclick="PF('dlgBarraProgresso').show(); PF('barraProgr').start();"
+					icon="iconeEnviarArquivo"
+					styleClass="p-mt-3 ui-button-outlined p-d-block" />
+			</div>
+
+
+
+
+
+
+
+			<!-- DIV PR. DIR. -->
+			<div class="div-propaganda">
+				<p:graphicImage url="/imagens/pdfER.png" styleClass="tamanho-logo" />
+				<p:outputLabel value="esp. prop."
+					style="font-family: alex; font-size: 30px; test-align: center;" />
+
+
+			</div>
+			<!-- FIM DIV PR. DIR. -->
+
+
+		</div>
+		<!-- FIM DIV GERAL -->
+
+
+
+		<p:commandLink style="font-size: 2px; color: #FFF;"
+			value="parar processo" id="botaoPararProcessosInvisivel"
+			action="#{convImagemPDFBean.pararProcessos}" />
+
+
+
+
+
+
+
+	</h:form>
+
+
+
+	<script>
+		window.document.getElementById('formPrincipal:nbrAumentar_input').value = 0;
+	</script>
+
+
+
+
+
+
+
+
+
+	<script src="js/convImagemPDF.js"></script>
+
+
+
+
+
+</h:body>
+</html>

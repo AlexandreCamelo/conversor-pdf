@@ -1,0 +1,252 @@
+{"properties": [
+  {
+    "name": "spring.mvc.view.view-names",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.mvc.view.view-names'"
+  },
+  {
+    "name": "diehard.arquivosEnv.raiz",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.raiz'"
+  },
+  {
+    "name": "diehard.arquivosEnv.raiz.relativo",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.raiz.relativo'"
+  },
+  {
+    "name": "diehard.arquivosEnv.raiz.primefaces",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.raiz.primefaces'"
+  },
+  {
+    "name": "diehard.arquivosEnv.raiz.primefaces.relativo",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.raiz.primefaces.relativo'"
+  },
+  {
+    "name": "diehard.arquivosEnv.raiz.primefaces",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.raiz.primefaces'"
+  },
+  {
+    "name": "diehard.arquivosEnv.raiz.primefaces",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.raiz.primefaces'"
+  },
+  {
+    "name": "diehard.arquivosEnv.raiz.primefaces",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.raiz.primefaces'"
+  },
+  {
+    "name": "diehard.arquivosEnv.contas",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.contas'"
+  },
+  {
+    "name": "diehard.arquivosEnv.raiz.primefaces.relativo",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.raiz.primefaces.relativo'"
+  },
+  {
+    "name": "diehard.arquivosEnv.contas.fotos",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.contas.fotos'"
+  },
+  {
+    "name": "diehard.uri.padrao",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.uri.padrao'"
+  },
+  {
+    "name": "diehard.prefixo.uri.aplicativo",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.prefixo.uri.aplicativo'"
+  },
+  {
+    "name": "diehard.arquivosEnv.contasPag",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.contasPag'"
+  },
+  {
+    "name": "diehard.arquivosEnv.maquinas",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.maquinas'"
+  },
+  {
+    "name": "server.contextPath",
+    "type": "java.lang.String",
+    "description": "A description for 'server.contextPath'"
+  },
+  {
+    "name": "diehard.conexoes.usuario",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.conexoes.usuario'"
+  },
+  {
+    "name": "diehard.conexoes.senha",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.conexoes.senha'"
+  },
+  {
+    "name": "diehard.conexoes.url",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.conexoes.url'"
+  },
+  {
+    "name": "diehard.arquivosEnv.raiz.relativo",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.raiz.relativo'"
+  },
+  {
+    "name": "diehard.arquivosEnv.raiz.relativo",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.raiz.relativo'"
+  },
+  {
+    "name": "diehard.arquivosEnv.relatManut",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.relatManut'"
+  },
+  {
+    "name": "jwt.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.secret'"
+  },
+  {
+    "name": "diehard.arquivosEnv.backup",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.backup'"
+  },
+  {
+    "name": "diehard.arquivosEnv.backupArqEnv",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.backupArqEnv'"
+  },
+  {
+    "name": "diehard.arquivosEnv.backupEstaticos",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.backupEstaticos'"
+  },
+  {
+    "name": "diehard.arquivosEnv.concBancaria",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.concBancaria'"
+  },
+  {
+    "name": "diehard.arquivosEnv.concBancariaRelat",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.concBancariaRelat'"
+  },
+  {
+    "name": "google.secret.key.path",
+    "type": "java.lang.String",
+    "description": "A description for 'google.secret.key.path'"
+  },
+  {
+    "name": "google.oauth.callback.uri",
+    "type": "java.lang.String",
+    "description": "A description for 'google.oauth.callback.uri'"
+  },
+  {
+    "name": "google.credentials.folder.path",
+    "type": "java.lang.String",
+    "description": "A description for 'google.credentials.folder.path'"
+  },
+  {
+    "name": "google.service.account.key",
+    "type": "java.lang.String",
+    "description": "A description for 'google.service.account.key'"
+  },
+  {
+    "name": "diehard.arquivoBackup",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivoBackup'"
+  },
+  {
+    "name": "diehard.arquivosEnv.contas",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.contas'"
+  },
+  {
+    "name": "diehard.arquivosEnv.contas",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.contas'"
+  },
+  {
+    "name": "diehard.arquivoBackup",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivoBackup'"
+  },
+  {
+    "name": "diehard.arquivobackup",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivobackup'"
+  },
+  {
+    "name": "diehard.arquivosEnv.raiz.relativo",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.raiz.relativo'"
+  },
+  {
+    "name": "diehard.arquivosEnv.contas",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.arquivosEnv.contas'"
+  },
+  {
+    "name": "diehard.caminho.backup.pastarecursos",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.caminho.backup.pastarecursos'"
+  },
+  {
+    "name": "diehard.backup.manterbackupdequantosdias",
+    "type": "java.lang.String",
+    "description": "A description for 'diehard.backup.manterbackupdequantosdias'"
+  },
+  {
+    "name": "spring.sql.init.encoding",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.sql.init.encoding'"
+  },
+  {
+    "name": "conversoes.diretorio.arquivos.enviados",
+    "type": "java.lang.String",
+    "description": "A description for 'conversoes.diretorio.arquivos.enviados'"
+  },
+  {
+    "name": "conversoes.diretorio.tesseract.tessdata",
+    "type": "java.lang.String",
+    "description": "A description for 'conversoes.diretorio.tesseract.tessdata'"
+  },
+  {
+    "name": "conversoes.diretorio.arquivos.tamanhomaximo",
+    "type": "java.lang.String",
+    "description": "A description for 'conversoes.diretorio.arquivos.tamanhomaximo'"
+  },
+  {
+    "name": "conversoes.arquivos.tamanhomaximo",
+    "type": "java.lang.String",
+    "description": "A description for 'conversoes.arquivos.tamanhomaximo'"
+  },
+  {
+    "name": "conversoes.tamanho.maximo.arquivo",
+    "type": "java.lang.String",
+    "description": "A description for 'conversoes.tamanho.maximo.arquivo'"
+  },
+  {
+    "name": "google.recaptcha.key.site",
+    "type": "java.lang.String",
+    "description": "A description for 'google.recaptcha.key.site'"
+  },
+  {
+    "name": "google.recaptcha.key.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'google.recaptcha.key.secret'"
+  },
+  {
+    "name": "google.recaptcha.dominio.site",
+    "type": "java.lang.String",
+    "description": "A description for 'google.recaptcha.dominio.site'"
+  }
+]}

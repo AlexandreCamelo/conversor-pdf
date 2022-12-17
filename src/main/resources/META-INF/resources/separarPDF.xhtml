@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<!-- 	<meta name="viewport" content="width=device-width" /> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="content-language" content="pt-br" />
+	<meta http-equiv="content-type" content="text/html" />
+	<meta http-equiv="cache-control" content="public" />
+	<meta http-equiv="pragma" content="public" />
+	<meta name="copyright" content="2020 - Alexandre Fernandes Camelo" />
+	<meta name="author" content="Alexandre Fernandes Camelo" />
+	<meta name="description"
+		content="Conversoes PDF. Converta DE e PARA PDF. Diversas ferramentas para facilitar sua vida, trabalhando com PDF's" />
+	<meta name="keywords"
+		content="PDF, converter PDF, PDF para word, PDF para texto, PDF para HTML, PDF para imagem, imagem para PDF, OCR PDF, PDF OCR, ferramentas PDF, separar PDF" />
+	<meta name="rating" content="general" />
+	<meta name="robots" content="follow" />
+
+	<link rel="stylesheet" href="css/separarPDF.css" />
+	<title>separar PDF</title>
+	<link rel="icon" href="imagens/pdfPagesIcone128.png" />
+
+	<f:event listener="#{configPrimefacesTemas.mudaTema('saga')}"
+		type="preRenderView"></f:event>
+
+
+
+
+
+	<style>
+</style>
+
+
+</h:head>
+
+
+
+<h:body>
+
+	<ui:include id="inc2" src="fragmentos/fragCabecalho.xhtml" />
+
+	<p:dialog modal="true" widgetVar="statusDialog" header="Convertendo"
+		draggable="false" closable="false" resizable="false">
+		<i id="spinAlex" class="pi pi-spinner pi-spin" style="font-size: 5rem"></i>
+	</p:dialog>
+
+	<ui:include id="incProgEterna" src="fragmentos/barraProgEterna.xhtml" />
+	<ui:include id="incProgresso" src="fragmentos/barraProgresso.xhtml" />
+
+
+	<h:form id="formPrincipal" enctype="multipart/form-data">
+
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+
+
+
+
+
+
+
+		<!-- GERAL -->
+		<div
+			style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center">
+
+
+
+
+
+			<!-- DIV PR. ESQ -->
+			<div class="div-propaganda">
+				<p:graphicImage url="/imagens/pdfER.png" styleClass="tamanho-logo" />
+				<p:outputLabel value="espaço para propaganda"
+					style="font-family: alex; font-size: 30px;" />
+			</div>
+			<!-- FIM PR. ESQ -->
+
+
+
+
+			<!-- DIV CONT. -->
+			<div class="div-conteudo">
+
+
+				<p:outputLabel value="separar pdf" styleClass="titulo" />
+				<div id="divLargura"></div>
+
+				<p:outputLabel
+					value="separe seu PDF por intervalos ou arrastando/soltando as páginas"
+					styleClass="subTitulo" />
+
+				<p:outputLabel
+					value="separe o PDF por intervalos ou marcando cada página"
+					styleClass="subTitulo-mob" />
+
+				<p:outputLabel value="#{separarPDFBean.etiquetaArquivoABaixar}" />
+
+				<div id="divPainelCasoDown"
+					style="display: flex; justify-content: center !important;">
+					<p:panelGrid id="painelCasoDownload">
+						<p:row
+							style="display: flex !important; 
+							justify-content: center !important; text-align: center; align-items: center; margin-top: 10px;">
+
+							<p:column id="colunaNomeArquivo"
+								style="display: none; justify-content: center; flex-direction: column; align-items: center;">
+
+								<p:outputLabel id="lblNomeArquivo"
+									value="#{separarPDFBean.etiquetaArquivoABaixar}"
+									styleClass="nomeArquivoBaixar" />
+								<p:commandLink id="btnBaixarInvisivel"
+									actionListener="#{separarPDFBean.baixarArquivoConvertido}"
+									ajax="false" onclick="escondeDownloadEMostraRedirecionar();">
+
+									<div id="divBaixar" class="botaoBaixar">
+
+										<p:graphicImage url="imagens/baixar.png"
+											style="height: 80px; width: 80px;" />
+										baixar
+									</div>
+								</p:commandLink>
+
+
+								<p:commandButton id="outroArquivoAoBaixar"
+									value="separar outro arquivo" ajax="true"
+									onclick="redirecionarParaAMesmaPagina();"
+									actionListener="#{separarPDFBean.apagarPastaArquivos}"
+									icon="iconeOutroArquivoAoBaixar"
+									styleClass="p-mt-3 ui-button-outlined p-d-block"
+									style="margin-top: 20px; border-radius: 10px; " />
+
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+
+
+					<p:commandButton id="outroArquivo" value="separar outro arquivo"
+						ajax="true" onclick="redirecionarParaAMesmaPagina();"
+						actionListener="#{separarPDFBean.apagarPastaArquivos}"
+						icon="iconeOutroArquivo"
+						styleClass="p-mt-3 ui-button-outlined p-d-block"
+						style="margin-top: 10px;" />
+
+					<p:commandButton id="refOperacao" value="refazer operação"
+						ajax="true" onclick="redirecionarParaAMesmaPagina();"
+						actionListener="#{separarPDFBean.apagarPastaArquivos}"
+						icon="iconeArquivo"
+						styleClass="p-mt-3 ui-button-outlined p-d-block"
+						style="margin-top: 10px;" />
+				</div>
+
+
+				<div id="captcha"
+					style="display: none; margin: 10px 0px 0px 10px; justify-content: center !important;">
+					<ui:include src="fragmentos/camelCaptcha.xhtml" />
+				</div>
+
+
+
+				<div id="divDaEscolha" class="divEscolha">
+					<p:fileUpload id="escolher" widgetVar="widEscolher"
+						value="#{separarPDFBean.arquivoEnviado}" mode="simple"
+						label="escolher arquivo" skinSimple="true"
+						chooseIcon="iconeArquivo" virusScan="true"
+						style="margin-left: 0px !important; padding-left: 0px !important;" />
+
+					<p:commandButton id="idEnviar" widgetVar="widEnviar" value="enviar"
+						ajax="false"
+						onclick="PF('dlgBarraProgresso').show(); PF('barraProgr').start(); document.getElementById('dlgBarra_title').innerHTML = 'Enviando...';"
+						actionListener="#{separarPDFBean.converterPDFParaImagem}"
+						icon="iconeEnviarArquivo"
+						styleClass="p-mt-3 ui-button-outlined p-d-block" />
+				</div>
+
+
+				<div id="divReProcModo" style="display: none; margin: 5px;">
+					<p:button icon="pi pi-refresh" value="enviar outro arquivo"
+						onclick="redirecionarParaAMesmaPagina();" />
+				</div>
+				<div id="divEscolhaModo"
+					style="display: none; border: 1px solid #DCDCDC; border-radius: 5px; flex-direction: column; align-items: center; padding: 5px;">
+
+
+					<p:outputLabel id="nomeArquivoEnviado"
+						value="#{separarPDFBean.nomeArqEnviado}"
+						style="text-align: center !important; margin-bottom: 10px; background-color: #DCDCDC;" />
+					<p:outputLabel value="Que modo de separação você prefere?"
+						style="text-align: center !important; color: #1673b1; weight: bold; margin-bottom: 5px;" />
+
+
+
+					<div style="display: flex;">
+						<p:button value="por intervalo de páginas"
+							icon="pi pi-sort-numeric-up-alt" onclick="escModoIntervalo();"
+							title="escolha quantos intervalos de páginas desejar, para separação" />
+						<p:button value="escolher cada página" icon="pi pi-book"
+							onclick="escModoDragDrop();"
+							title="selecione cada uma das páginas, para separação" />
+						<p:commandButton
+							actionListener="${separarPDFBean.separarTodasAsPaginas}"
+							onclick="PF('dlgBarraEterna').show();"
+							value="Separar todas as páginas" icon="pi pi-star"
+							title="cada página do seu pdf será transformada em um novo pdf" />
+					</div>
+
+				</div>
+			</div>
+
+
+
+			<!-- DIV PR. DIR. -->
+			<div class="div-propaganda">
+				<p:graphicImage url="/imagens/pdfER.png" styleClass="tamanho-logo" />
+				<p:outputLabel value="esp. prop."
+					style="font-family: alex; font-size: 30px; test-align: center;" />
+
+
+			</div>
+			<!-- FIM DIV PR. DIR. -->
+
+
+		</div>
+		<!-- FIM DIV GERAL -->
+
+
+
+		<p:commandLink style="font-size: 2px; color: #FFF;"
+			value="parar processo" id="botaoPararProcessosInvisivel"
+			action="#{separarPDFBean.pararProcessos}" />
+
+
+
+
+
+
+
+		<div
+			style="display: flex; width: 100%; justify-content: center; flex-direction: column !important; align-items: center !important;">
+
+			<div id="divIntervalos" class="div-intervalos">
+				<p:button icon="pi pi-arrow-left" onclick="voltaEscolhaModo();"
+					value="modo de separação" title="escolher modo de separação"
+					style="margin-left: 0px !important;" />
+				<div
+					style="border: 1px solid #DCDCDC; border-radius: 5px; padding: 10px; margin-top: 5px;">
+
+
+					<p:outputLabel
+						value="Adicione 1 ou vários intervalos de página, aqui."
+						style="margin-bottom: 10px; color: #1C8ADB !important; font-size: 15px; font-weight: bold;" />
+
+					<div
+						style="display: flex !important; justify-content: center !important; align-items: center !important; margin: 5px; width: 100%;">
+
+						<p:toggleSwitch value="#{separarPDFBean.umArquivoPorFoto}">
+							<p:ajax listener="#{separarPDFBean.setaUmArquivoPorFoto}" />
+						</p:toggleSwitch>
+
+						<div
+							style="display: flex; width: 50%; justify-content: flex-start; margin-left: 3px;">1
+							PDF por página</div>
+					</div>
+
+					<div id="divIntervalos2" class="div-intervalos2">
+						<div
+							style="display: flex; justify-content: flex-start; align-items: space-around !important; flex-wrap: wrap;">
+
+							<div style="display: block; margin: 5px;">
+								<div>
+									<p:outputLabel for="@next" value="página inicial" />
+								</div>
+								<p:spinner id="intervInicio"
+									value="#{separarPDFBean.intervInicio}" min="1"
+									max="#{separarPDFBean.totalPaginasPDF}" style="width: 120px;" />
+							</div>
+
+
+
+							<p:outputLabel value="à"
+								style="display: flex; justify-content: center; align-items: center !important; font-size: 20px; padding: 10px; width: 10px;" />
+
+							<div style="display: block; margin: 5px;">
+								<div>
+									<p:outputLabel for="@next" value="página final" />
+								</div>
+								<p:spinner id="intervFim" value="#{separarPDFBean.intervFim}"
+									min="1" max="#{separarPDFBean.totalPaginasPDF}"
+									style="width: 120px;" />
+							</div>
+						</div>
+
+						<div style="display: flex;">
+							<p:commandButton
+								actionListener="#{separarPDFBean.adicionarIntervalo}"
+								update="lblIntervalos" icon="pi pi-plus"
+								title="adicionar intervalo" class="botoes-intervalo" />
+
+							<p:commandButton update="lblIntervalos"
+								actionListener="#{separarPDFBean.excluirIntervalo}"
+								icon="pi pi-minus" class="botoes-intervalo"
+								title="excluir último intervalo" />
+
+							<p:commandButton id="btnSepararInterv" value="separar PDF"
+								icon="pi pi-th-large" style="display: none; color: #FFFF00;"
+								class="botoes-intervalo"
+								title="separar PDF de acordo com os intervalos de página escolhidos"
+								actionListener="#{separarPDFBean.separarPDFporIntervalos}"
+								onclick="PF('dlgBarraEterna').show();" />
+						</div>
+
+					</div>
+					<p:outputLabel id="lblIntervalos"
+						value="#{separarPDFBean.strIntervalosSelecionados}"
+						style="width: 100% !important; font-size: 15px !important; padding: 5px;" />
+
+
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+		<div id="divBotaoVoltarEscolhaModoGrande"
+			style="display: none; justify-content: center !important; width: 100%;">
+			<p:button icon="pi pi-arrow-left" onclick="voltaEscolhaModo();"
+				title="escolher modo de separação" value="modo de separação" />
+		</div>
+
+		<div id="divDragDrop" class="div-drag-drop">
+
+
+
+			<p:fieldset id="pdfAtual" legend="PDF atual"
+				style="margin-top:20px; width: 50% !important;">
+
+
+				<p:dataView id="paginasPDF" var="fotinhas" paginator="true"
+					lazy="true" value="#{separarPDFBeanDTO.fotos}" rows="9"
+					layout="grid" gridIcon="pi pi-th-large">
+
+					<p:dataViewGridItem>
+
+
+						<p:panel id="pnl" header="#{fotinhas.pagina}"
+							style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%">
+								<p:commandLink
+									actionListener="#{separarPDFBean.PDFEmImagemAltaResolucao(fotinhas.pagina)}"
+									update="formPrincipal:pagAltaResolucao">
+									<p:graphicImage url="#{fotinhas.foto}" class="estiloFotos" />
+								</p:commandLink>
+							</h:panelGrid>
+						</p:panel>
+
+						<p:draggable for="pnl" revert="true" handle=".ui-panel-titlebar"
+							stack=".ui-panel" />
+
+
+					</p:dataViewGridItem>
+				</p:dataView>
+			</p:fieldset>
+
+			<p:fieldset id="novoPDF" legend="Novo PDF"
+				style="margin-top:20px; width: 50% !important;">
+
+
+				<div id="divBotoesPagEscolhidas"
+					style="display: none; padding: 5px; justify-content: space-between;">
+					<div
+						style="display: flex; justify-content: flex-start; align-items: center; margin: 5px; width: 100%;">
+						<p:toggleSwitch value="#{separarPDFBean.umArquivoPorFoto}">
+							<p:ajax listener="#{separarPDFBean.setaUmArquivoPorFoto}" />
+						</p:toggleSwitch>
+						<div
+							style="display: flex; width: 50%; justify-content: flex-start; margin-left: 3px;">1
+							PDF por página</div>
+					</div>
+
+					<p:commandButton id="btnPaginasEscolhidas" value="separar PDF"
+						icon="pi pi-th-large" styleClass="botao-separar-drag"
+						actionListener="#{separarPDFBean.separarPDFPorDragDrop}"
+						onclick="PF('dlgBarraEterna').show();" />
+				</div>
+				<p:outputPanel id="dropArea">
+					<p:dataView id="paginasSelecionadas" var="fotinhas2"
+						paginator="true" lazy="true"
+						value="#{separarPDFBeanDTO.fotosSelecionadas}" rows="9"
+						layout="grid" gridIcon="pi pi-th-large">
+
+						<p:dataViewGridItem>
+
+
+							<p:panel id="pnl2" header="#{fotinhas2.pagina}"
+								style="text-align:center">
+								<h:panelGrid columns="1" style="width:100%">
+									<p:commandButton
+										actionListener="#{separarPDFBean.tirarPaginaDaLista(fotinhas2)}"
+										title="Excluir página" update="paginasSelecionadas"
+										icon="pi pi-times"
+										style="background-color: #F00 !important; font-size: 12px !important; width: 20px !important; height: 20px !important; margin: 0px 0px 0px 0px;" />
+									<p:graphicImage url="#{fotinhas2.foto}" class="estiloFotos" />
+								</h:panelGrid>
+							</p:panel>
+
+
+
+						</p:dataViewGridItem>
+					</p:dataView>
+				</p:outputPanel>
+			</p:fieldset>
+
+
+			<p:droppable for="novoPDF" tolerance="touch"
+				activeStyleClass="ui-state-highlight" datasource="paginasPDF"
+				onDrop="handleDrop">
+				<p:ajax listener="#{separarPDFBean.aoReceberFoto}"
+					update="dropArea paginasPDF intervInicio intervFim" />
+			</p:droppable>
+
+			<p:dialog id="dlgFotoAltaResolucao" widgetVar="dlgFotoAltaResolucao"
+				modal="true" position="center"
+				style="width: 100% !important; height: 100%;" responsive="true">
+				<p:graphicImage id="pagAltaResolucao"
+					url="#{separarPDFBean.caminhoFotoAltaResolucaoDialog}"
+					style="width: auto; height: 500px;" />
+			</p:dialog>
+
+
+
+		</div>
+
+
+
+		<div id="divDragDropMob" class="div-drag-drop-mob">
+
+			<p:fieldset id="pdfAtualMob" legend="PDF atual"
+				style="margin-top:20px; width: 100% !important;">
+
+				<div
+					style="display: flex; padding: 5px; justify-content: center; align-items: center; flex-direction: column;">
+					<p:outputLabel value="Marque as páginas para separar"
+						style="margin-bottom: 10px; color: #1C8ADB !important; font-size: 15px; font-weight: bold; text-align: center !important;" />
+
+					<div
+						style="display: flex !important; justify-content: center !important; align-items: center !important; margin: 5px; width: 100%;">
+
+						<p:toggleSwitch value="#{separarPDFBean.umArquivoPorFoto}">
+							<p:ajax listener="#{separarPDFBean.setaUmArquivoPorFoto}" />
+						</p:toggleSwitch>
+
+						<div
+							style="display: flex; width: 50%; justify-content: flex-start; margin-left: 3px;">1
+							PDF por página</div>
+					</div>
+
+					<div
+						style="display: flex; justify-content: space-between; width: 100%;">
+						<p:button icon="pi pi-arrow-left" onclick="voltaEscolhaModo();"
+							title="escolher modo de separação" value="modo de separação" />
+						<p:commandButton value="ver novo pdf"
+							actionListener="#{separarPDFBean.mostraEscondeBotaoSepararMob}"
+							onclick="PF('dlgNovoPDFMob').show();" icon="pi pi-search"
+							style="width: 150px; !important" />
+					</div>
+
+				</div>
+				<p:dataView id="paginasPDFMob" widgetVar="paginasPDFMob"
+					var="fotinhasMob" paginator="true" lazy="true"
+					value="#{separarPDFBeanDTO.fotos}" rows="7" layout="grid">
+					<p:dataViewGridItem id="gridAlexMob" columns="7">
+
+
+						<p:panel id="pnlMob" header="#{fotinhasMob.pagina}"
+							style="text-align:center; width: 90px !important; height: auto;">
+							<h:panelGrid>
+								<p:selectBooleanCheckbox value="#{fotinhasMob.adicionar}">
+									<p:ajax
+										listener="#{separarPDFBean.addExcluirFotosMarcadas(fotinhasMob)}"
+										update="formPrincipal:paginasSelecionadasMob formPrincipal:btnPaginasEscolhidasMob" />
+								</p:selectBooleanCheckbox>
+
+
+								<p:commandLink
+									actionListener="#{separarPDFBean.PDFEmImagemAltaResolucao(fotinhasMob.pagina)}"
+									update="formPrincipal:pagAltaResolucaoMob">
+									<p:graphicImage url="#{fotinhasMob.foto}" class="estiloFotos" />
+								</p:commandLink>
+
+
+							</h:panelGrid>
+						</p:panel>
+
+					</p:dataViewGridItem>
+				</p:dataView>
+			</p:fieldset>
+
+			<p:dialog id="dlgFotoAltaResolucaoMob"
+				widgetVar="dlgFotoAltaResolucaoMob" modal="true" position="center"
+				style="width: 100% !important; height: 100%;" responsive="true">
+				<p:graphicImage id="pagAltaResolucaoMob"
+					url="#{separarPDFBean.caminhoFotoAltaResolucaoDialog}"
+					style="width: 300px; height: auto;" />
+			</p:dialog>
+
+
+			<p:dialog id="dlgNovoPDFMob" widgetVar="dlgNovoPDFMob"
+				position="center" style="width: 100% !important; height: 100%;">
+				<p:fieldset id="novoPDFMob" legend="Novo PDF"
+					style="width: 100% !important; background-color: #ADD8E6 !important;">
+
+					<p:messages id="messages2" showDetail="true" closable="true">
+						<p:autoUpdate />
+					</p:messages>
+
+					<div id="divBotaoSepararDragMob"
+						style="display: flex; padding: 5px; justify-content: center;">
+						<p:commandButton id="btnPaginasEscolhidasMob"
+							widgetVar="btnPaginasEscolhidasMob" value="separar"
+							icon="pi pi-th-large" styleClass="botao-separar-drag"
+							onclick="PF('dlgNovoPDFMob').hide(); renderizarDragDropPeloTamanhoDaTela(false); PF('dlgBarraEterna').show();"
+							actionListener="#{separarPDFBean.separarPDFPorDragDrop}" />
+					</div>
+					<p:outputPanel id="dropAreaMob">
+						<p:dataView id="paginasSelecionadasMob"
+							widgetVar="paginasSelecionadasMob" var="fotinhas2Mob"
+							paginator="true" lazy="true"
+							value="#{separarPDFBeanDTO.fotosSelecionadas}" rows="7"
+							layout="grid" style="background-color: #ADD8E6 !important;">
+
+							<p:dataViewGridItem columns="7">
+
+
+								<p:panel id="pnl2Mob" header="#{fotinhas2Mob.pagina}"
+									style="text-align:center; width: 85px !important; height: auto;">
+									<h:panelGrid columns="1" style="width:100%">
+										<p:commandButton
+											actionListener="#{separarPDFBean.tirarPaginaDaLista(fotinhas2Mob)}"
+											title="Excluir página"
+											update="paginasSelecionadasMob formPrincipal:paginasPDFMob"
+											icon="pi pi-times"
+											style="background-color: #F00 !important; font-size: 12px !important; width: 20px !important; height: 20px !important; margin: 0px 0px 0px 0px;" />
+										<p:graphicImage url="#{fotinhas2Mob.foto}" class="estiloFotos" />
+
+									</h:panelGrid>
+								</p:panel>
+
+
+
+							</p:dataViewGridItem>
+						</p:dataView>
+					</p:outputPanel>
+				</p:fieldset>
+			</p:dialog>
+
+
+			<p:droppable for="novoPDFMob" tolerance="touch"
+				activeStyleClass="ui-state-highlight" datasource="paginasPDFMob"
+				onDrop="handleDrop">
+				<p:ajax listener="#{separarPDFBean.aoReceberFoto}"
+					update="dropAreaMob paginasPDFMob intervInicio intervFim" />
+			</p:droppable>
+
+
+		</div>
+
+
+
+
+
+		<p:ajaxExceptionHandler
+			type="javax.faces.application.ViewExpiredException"
+			update="dlgPaginaExpirada"
+			onexception="PF('dlgPaginaExpirada').show()" />
+
+
+		<p:ajaxExceptionHandler
+			type="javax.faces.model.NoRowAvailableException"
+			update="dlgPaginaExpirada"
+			onexception="PF('dlgPaginaExpirada').show()" />
+
+		<p:ajaxExceptionHandler type="java.lang.IndexOutOfBoundsException"
+			update="dlgPaginaExpirada"
+			onexception="PF('dlgPaginaExpirada').show()" />
+
+
+		<p:dialog id="dlgPaginaExpirada" header="Página expirada"
+			widgetVar="dlgPaginaExpirada"
+			onHide="document.location.href = document.location.href;">
+
+			<p:outputLabel style="font-family: alex;"
+				value="Essas informações não têm mais validade." />
+			<br />
+			<br />
+
+			<p:outputLabel style="font-family: alex; font-weight: bold"
+				value="A página será reiniciada." />
+			<br />
+			<br />
+
+			<p:button onclick="document.location.href = document.location.href;"
+				value="Entendi" />
+		</p:dialog>
+
+
+
+
+		<p:ajaxExceptionHandler type="java.lang.NullPointerException"
+			update="dlgErroInesperado"
+			onexception="PF('dlgErroInesperado').show()" />
+
+		<p:dialog id="dlgErroInesperado" header="Erro desconhecido."
+			widgetVar="dlgErroInesperado"
+			onHide="document.location.href = document.location.href;">
+
+			<p:outputLabel value="Algum erro ocorreu. A página será reiniciada." />
+
+			<p:button onclick="document.location.href = document.location.href;"
+				value="entendi" />
+		</p:dialog>
+	</h:form>
+
+
+
+	<script src="js/separarPDF.js"></script>
+
+
+
+
+</h:body>
+</html>

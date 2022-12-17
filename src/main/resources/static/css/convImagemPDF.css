@@ -1,0 +1,665 @@
+@charset "ISO-8859-1";
+/*FONTES INSTALADAS */
+@font-face {
+	font-family: alex;
+	src: url(../fontes/Comfortaa/Comfortaa-VariableFont_wght.ttf);
+}
+
+.fontePadrao {
+	font-family: alex !important;
+	color: #1673b1 !important;
+}
+
+.fonte10{
+	font-size: 10px !important;
+}
+
+.fonte11{
+	font-size: 11px !important;
+}
+
+.fonte12{
+	font-size: 12px !important;
+}
+
+.fontePreta{
+	color: #000 !important;
+}
+
+.fonteTamanhoImagens {
+	font-size: 20px !important;
+}
+
+.titulo {
+	font-size: 50px !important;
+	font-family: alex !important;
+	color: #1673b1 !important;
+	text-align: center !important;
+	margin-top: 20px !important;
+}
+
+.ui-widget, .ui-widget .ui-widget {
+	/*font-size: 100% !important;*/
+	text-align: rigth !important;
+	margin-left: 10px !important;
+}
+
+.tamanho-logo {
+	max-height: 150px !important;
+	max-width: 200px !important;
+	width: auto !important;
+	height: auto !important;
+}
+
+.div-propaganda {
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border: 5px solid #000;
+	width: 25%;
+}
+
+.div-conteudo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	width: 50%
+}
+
+/*ÍCONE PDF PARA WORD */
+.iconePdfWord {
+	background-size: cover;
+	height: 10em;
+	width: 10em;
+	margin-right: 20px;
+	position: relative;
+	top: 2px;
+	background-image: url('imagens/pdfWord.png') !important;
+	background-repeat: no-repeat;
+}
+
+/*ÍCONE ARQUIVO*/
+.iconeArquivo {
+	background-size: cover;
+	height: 5em;
+	width: 5em;
+	position: relative;
+	top: 18% !important;
+	background-image: url('../imagens/escolherArquivo.png') !important;
+	background-repeat: no-repeat;
+}
+
+.iconeOutroArquivo {
+	background-size: cover;
+	height: 5em;
+	width: 5em;
+	position: relative;
+	top: 30% !important;
+	background-image: url('../imagens/escolherArquivo.png') !important;
+	background-repeat: no-repeat;
+}
+
+.iconeOutroArquivoAoBaixar {
+	background-size: cover;
+	height: 5em;
+	width: 5em;
+	position: relative;
+	top: 20% !important;
+	background-image: url('../imagens/escolherArquivo.png') !important;
+	background-repeat: no-repeat;
+}
+
+/*ÍCONE ENVIAR ARQUIVO*/
+.iconeEnviarArquivo {
+	background-size: cover;
+	height: 5em;
+	width: 5em;
+	position: relative;
+	top: 20px !important;
+	left: 20px !important;
+	background-image: url('../imagens/converter.png') !important;
+	background-repeat: no-repeat;
+}
+
+/*ÍCONE ENVIAR ARQUIVO*/
+.iconeBaixarArquivo {
+	background-size: cover;
+	height: 5em;
+	width: 5em;
+	position: relative;
+	top: 18% !important;
+	background-image: url('../imagens/baixarArquivo.png') !important;
+	background-repeat: no-repeat;
+}
+
+/*ÍCONE SEM TEXTO RECONHECÍVEL*/
+.iconeTexto {
+	background-size: cover;
+	height: 5em;
+	width: 5em;
+	position: relative;
+	top: 18% !important;
+	background-image: url('../imagens/texto.png') !important;
+	background-repeat: no-repeat;
+}
+
+.iconeTextoConfirm {
+	background-size: contain !important;
+	height: 5em;
+	width: 5em;
+	position: relative;
+	top: 18% !important;
+	background-image: url('../imagens/texto.png') !important;
+	background-repeat: no-repeat;
+}
+
+/*ÍCONE DOWNLOAD ARQUIVO*/
+.iconeBaixar {
+	background-size: cover;
+	height: 5em;
+	width: 5em;
+	position: relative;
+	top: 18% !important;
+	background-image: url('../imagens/baixar.png') !important;
+	background-repeat: no-repeat;
+}
+
+/*ÍCONE SINAL DE ADIÇÃO*/
+.iconeMais {
+	background-size: cover;
+	height: 5em;
+	width: 5em;
+	position: relative;
+	top: 18% !important;
+	background-image: url('../imagens/mais.png') !important;
+	background-repeat: no-repeat;
+}
+
+/*CONTEINER ONDE FICA O BOTÃO DE ESCOLHA DE ARQUIVOS */
+#formPrincipal\:escolher {
+	width: 330px !important;
+	height: 100px !important;
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	padding-top: 0px !important;
+	/*margin: 0px 0px 40px 0px !important;*/
+}
+
+/*LABEL DO BOTÃO DE ESCOLHA DE ARQUIVOS */
+#formPrincipal\:escolher_label {
+	width: 260px !important;
+	height: 100px !important;
+	font-size: 40px !important;
+	font-family: alex !important;
+	margin-left: 40px !important;
+	justify-content: flex-end !important;
+	text-align: right !important;
+	margin-bottom: 10px !important;
+}
+
+/*SELETOR PARA COLOCAR COR DE FUNDO NO BOTÃO DE ESCOLHA*/
+#formPrincipal\:escolher>span.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-left
+	{
+	background-color: #1C8ADB !important;
+}
+
+/*CONTEINER ONDE FICA O NOME DO ARQUIVO, ASSIM QUE O USUÁRIO ESCOLHE */
+#formPrincipal\:escolher>span.ui-fileupload-filename {
+	display: flex !important;
+	color: #1C8ADB !important;
+	font-family: alex !important;
+	padding-top: 10px !important;
+	padding-bottom: 80px !important;
+	text-overflow: inherit;
+}
+
+/*SELETOR PARA COLOCAR COR DE FUNDO NO BOTÃO DE ESCOLHA*/
+#formPrincipal\:escolher>span.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-left:hover
+	{
+	background-color: #FFF !important;
+	color: #1C8ADB;
+	transition: 0.5s;
+}
+
+/*BOTÃO ENVIAR*/
+#formPrincipal\:idEnviar>span.ui-button-text.ui-c {
+	width: 320px;
+	height: 100px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	font-size: 38px !important;
+	font-family: alex;
+	color: #1673b1;
+}
+
+#formPrincipal\:idEnviar>span.ui-button-text.ui-c:hover {
+	color: #FFF !important;
+	transition: 0.5s !important;
+}
+
+#formPrincipal\:idEnviar:hover {
+	background-color: #1C8ADB;
+	color: #FFF;
+	transition: 0.5s;
+}
+
+#formPrincipal\:outroArquivo>span.ui-button-text.ui-c {
+	width: 350px;
+	height: 150px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	text-align: right;
+	font-size: 30px !important;
+	font-family: alex;
+	font-weight: bold;
+	color: #1673b1;
+}
+
+#formPrincipal\:outroArquivo>span.ui-button-text.ui-c:hover {
+	background-color: #1C8ADB;
+	color: #FFF;
+	transition: 0.5s;
+}
+
+#formPrincipal\:outroArquivoAoBaixar>span.ui-button-text.ui-c {
+	width: 350px;
+	height: 100px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	text-align: right;
+	font-size: 30px !important;
+	font-family: alex;
+	font-weight: bold;
+	color: #1673b1;
+}
+
+#formPrincipal\:outroArquivoAoBaixar>span.ui-button-text.ui-c:hover {
+	background-color: #1C8ADB;
+	color: #FFF;
+	transition: 0.5s;
+}
+
+#formPrincipal\:refOperacao>span.ui-button-text.ui-c {
+	width: 320px;
+	height: 150px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	text-align: right;
+	font-size: 40px !important;
+	font-family: alex;
+	font-weight: bold;
+	color: #1673b1;
+}
+
+#formPrincipal\:refOperacao>span.ui-button-text.ui-c:hover {
+	background-color: #1C8ADB;
+	color: #FFF;
+	transition: 0.5s;
+}
+
+/*BOTÃO BAIXAR*/
+#formPrincipal\:idBotaoBaixar {
+	width: 300px;
+	height: 100px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	font-size: 50px;
+	font-family: alex;
+	color: #1673b1;
+}
+
+#formPrincipal\:idBotaoBaixar:hover {
+	background-color: #1C8ADB;
+	color: #FFF;
+	transition: 0.5s;
+}
+
+#formPrincipal\:btnBaixarInvisivel:hover {
+	text-decoration: none !important;
+}
+
+#formPrincipal\:btnFazOCR:hover {
+	text-decoration: none !important;
+}
+
+#formPrincipal\:labelDownload:hover {
+	cursor: pointer;
+}
+
+#divBaixar:hover {
+	background-color: #1C8ADB !important;
+	color: #FFF !important;
+	transition: 0.5s;
+}
+
+#formPrincipal\:botaoApagarPastasInvisivel:hover {
+	text-decoration: none !important;
+	cursor: default !important;
+}
+
+#formPrincipal\:botaoPararProcessosInvisivel:hover {
+	text-decoration: none !important;
+	cursor: default;
+}
+
+#formPrincipal\:cboLinguagemOCR {
+	width: 400px;
+	height: 100px;
+	margin: 10px 0px 0px 0px;
+}
+
+#formPrincipal\:cboLinguagemOCR_1 {
+	font-size: 20px;
+	color: #1673b1;
+}
+
+#formPrincipal\:cboLinguagemOCR_2 {
+	font-size: 20px;
+	color: #1673b1;
+}
+
+#formPrincipal\:cboLinguagemOCR_3 {
+	font-size: 20px;
+	color: #1673b1;
+}
+
+#formPrincipal\:cboLinguagemOCR_4 {
+	font-size: 20px;
+	color: #1673b1;
+}
+
+#formPrincipal\:cboLinguagemOCR_5 {
+	font-size: 20px;
+	color: #1673b1;
+}
+
+#formPrincipal\:cboLinguagemOCR_6 {
+	font-size: 20px;
+	color: #1673b1;
+}
+
+#formPrincipal\:cboLinguagemOCR_7 {
+	font-size: 20px;
+	color: #1673b1;
+}
+
+#formPrincipal\:cboLinguagemOCR_8 {
+	font-size: 20px;
+	color: #1673b1;
+}
+
+#formPrincipal\:cboLinguagemOCR_9 {
+	font-size: 20px;
+	color: #1673b1;
+}
+
+#formPrincipal\:cboLinguagemOCR_10 {
+	font-size: 20px;
+	color: #1673b1;
+}
+
+#formPrincipal\:cboLinguagemOCR_label {
+	display: flex;
+	font-size: 25px;
+	color: #1673b1;
+	align-items: center;
+	justify-content: center;
+}
+
+#formPrincipal\:btnFazOCR2>span.ui-button-text.ui-c {
+	width: 350px;
+	height: 100px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end !important;
+	align-items: center;
+	font-size: 38px !important;
+	font-family: alex;
+	color: #1673b1;
+}
+
+#formPrincipal\:btnFazOCR2>span.ui-button-text.ui-c:hover {
+	background-color: #1C8ADB;
+	color: #FFF;
+	transition: 0.5s;
+}
+
+/* BOTÃO DE FECHAMENTO DAS MENSAGENS QUE APARECEM EM CIMA DA TELA */
+#formPrincipal\:messages>div>a {
+	margin-right: 20px !important;
+	position: absolute !important;
+	top: 1% !important;
+}
+
+.divBotoesDialogOCR {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 10px;
+	flex-wrap: wrap;
+}
+
+.divTextoDialogOCR {
+	width: 80%;
+	padding: 5px;
+}
+
+.textoDialogOCR {
+	text-align: right;
+}
+
+p, h1, h2, h3, h4, h5, span {
+	font-family: alex;
+}
+
+.divEscolha {
+	display: flex !important;
+	width: 80% !important;
+	height: 130px;
+	flex-wrap: wrap;
+	justify-content: center !important;
+	align-items: flex-start !important;
+	margin-top: 10px !important;
+	flex-wrap: wrap;
+	padding-top: 0px;
+}
+
+.div-regular-imagem{
+	display: flex; 
+	width: 50% !important; 
+	border: 5px groove #87CEEB !important; 
+	border-radius: 10px;
+	margin-top: 20px; 
+	flex-wrap: wrap; 
+	align-items: center !important; 
+	justify-content: center !important;
+	padding: 5px;
+	
+}
+
+/*CELULARES e TABLETS*/
+@media screen and (min-width: 0px) and (max-width: 1200px) {
+	.titulo {
+		font-size: 30px !important;
+		font-family: alex !important; 
+		color : #1673b1 !important;
+		text-align: center !important;
+		margin-top: 20px !important;
+	}
+	.tamanho-logo {
+		max-height: 100px !important;
+		max-width: 200px !important;
+		width: auto !important;
+		height: auto !important;
+	}
+	.fonteTamanhoImagens {
+		font-size: 12px !important;
+	}
+	.div-propaganda {
+		display: none;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		border: 5px solid #000;
+		width: 90%;
+	}
+	.div-conteudo {
+		display: flex !important;
+		flex-direction: column !important;
+		align-items: center !important;
+		justify-content: center !important;
+		flex-wrap: wrap !important;
+		width: 100% !important;
+		margin: 10px 0px 0px 0px !important;
+	}
+	.iconeTextoConfirm {
+		background-size: contain !important;
+		height: 2em;
+		width: 2em;
+		position: relative;
+		top: 18% !important;
+		background-image: url('../imagens/texto.png') !important;
+		background-repeat: no-repeat;
+	}
+	#formPrincipal\:cboLinguagemOCR {
+		width: 400px;
+		height: 100px;
+		margin: 10px 30px 0px 30px;
+	}
+	.divBotoesDialogOCR {
+		display: flex;
+		justify-content: space-around;
+		align-items: space-between;
+		margin-top: 10px;
+		flex-wrap: wrap;
+	}
+	.divTextoDialogOCR {
+		width: 100%;
+		padding: 5px;
+	}
+	.textoDialogOCR {
+		text-align: center;
+	}
+
+	/*CONTEINER ONDE FICA O BOTÃO DE ESCOLHA DE ARQUIVOS */
+	#formPrincipal\:escolher {
+		width: 150px !important;
+		height: 150px !important;
+		display: flex !important;
+		flex-wrap: wrap !important;
+		justify-content: center !important;
+		padding-top: 0px !important;
+		margin-left: 0px !important;
+		/*margin: 0px 0px 40px 0px !important;*/
+	}
+
+	/*LABEL DO BOTÃO DE ESCOLHA DE ARQUIVOS */
+	#formPrincipal\:escolher_label {
+		width: 150px !important;
+		height: 150px !important;
+		position: relative !important;
+		top: 85px !important;
+		right: 90px !important;
+		font-size: 20px !important;
+		font-family: alex !important;
+		margin-left: 40px !important;
+		justify-content: flex-end !important;
+		text-align: right !important;
+		margin-bottom: 10px !important;
+		top: 85px !important;
+		right: 55px !important;
+	}
+
+	/*SELETOR PARA COLOCAR COR DE FUNDO NO BOTÃO DE ESCOLHA*/
+	#formPrincipal\:escolher>span.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-left
+		{
+		background-color: #1C8ADB !important;
+	}
+
+	/*CONTEINER ONDE FICA O NOME DO ARQUIVO, ASSIM QUE O USUÁRIO ESCOLHE */
+	#formPrincipal\:escolher>span.ui-fileupload-filename {
+		display: flex !important;
+		color: #1C8ADB !important;
+		font-family: alex !important;
+		padding-top: 10px !important;
+		padding-bottom: 80px !important;
+		text-overflow: inherit;
+	}
+
+	/*ÍCONE ARQUIVO*/
+	.iconeArquivo {
+		background-size: cover;
+		height: 5em;
+		width: 5em;
+		position: relative;
+		top: 20px !important;
+		left: 30px !important;
+		background-image: url('../imagens/escolherArquivo.png') !important;
+		background-repeat: no-repeat;
+	}
+
+	/*BOTÃO ENVIAR*/
+	#formPrincipal\:idEnviar>span.ui-button-text.ui-c {
+		position: relative !important;
+		top: 50px !important;
+		/* 		right: 5% !important; */
+		width: 140px !important;
+		height: 150px !important;
+		display: flex !important;
+		justify-content: center !important;
+		align-items: center !important;
+		font-size: 20px !important;
+		font-family: alex !important;
+		color: #1673b1 !important;
+		margin-top: 10px !important;
+	}
+	#formPrincipal\:idEnviar:hover {
+		color: #1C8ADB;
+		transition: 0.5s;
+	}
+
+	/*ÍCONE ENVIAR ARQUIVO*/
+	.iconeEnviarArquivo {
+		background-size: cover;
+		height: 5em;
+		width: 5em;
+		position: relative;
+		top: 20px !important;
+		left: 30px !important;
+		bottom: 30% !important;
+		background-image: url('../imagens/converter.png') !important;
+		background-repeat: no-repeat;
+	}
+	.divEscolha {
+		display: flex !important;
+		width: 100% !important;
+		height: 130px;
+		justify-content: space-around !important;
+		align-items: flex-start !important;
+		margin-top: 10px !important;
+		flex-wrap: wrap;
+		padding-top: 0px;
+	}
+
+.div-regular-imagem{
+	display: flex; 
+	width: 95% !important; 
+	border: 1px groove #000; 
+	margin-top: 20px; 
+	flex-wrap: wrap; 
+	align-items: center !important; 
+	justify-content: center !important;
+	padding: 5px;
+}
+
+
+
+}

@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8" />
+<!-- <meta name="viewport" content="width=device-width" /> -->
+<title>Cadastro de Clientes</title>
+
+<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=10, minimum-scale=1.0">
+
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="/css/estilogeral.css" />
+
+
+<style>
+td, th, thead, tr {
+	border: 2px solid #DCDCDC;
+}
+
+
+
+</style>
+
+
+
+
+</head>
+
+<body>
+
+	<section class="linha-centro-larga">
+		<form id="frmClientes" method="POST" th:object="${cliForn}"
+			th:action="@{/cliforn/view}" style="flex: 1;">
+
+			<!-- class="form-inline" -->
+
+			<!-- MENSAGENS ENVIADAS PELO JAVA (FRAGMENTOS)-->
+			<th:block th:include="fragmentos/MsgErroValidacao">
+			</th:block>
+			<th:block th:include="fragmentos/MsgSalvoSucesso">
+			</th:block>
+			<th:block th:include="fragmentos/MsgOutras">
+			</th:block>
+
+
+			<h3>Inclusão de clientes</h3>
+			<div class="alin-v-h-esquerda fundo-cinza-claro">
+				<div class="larg-100-pcento" style="text-align: center; background-color: #B0C4DE;">
+					IDENTIFICAÇÃO
+				</div>
+
+<!--  
+ onclick="MudaJuridica()" 
+ onclick="MudaFisica()" 
+-->
+				<div class="larg-100-pcento" style="display: flex; align-items: center; margin: 10px; font-weight: bold;">
+					<input  id="rdoJuridica" class="larg-2e5-pcento" type="radio" name="fisicaJuridic"  value="true" th:field="*{pessoaJuridica}" checked />Jurídica 
+					<input  id="rdoFisica" class="larg-2e5-pcento" type="radio" name="fisicaJuridica" value="true"  th:field="*{pessoaFisica}" />Física
+				</div>
+
+				<div class="marg-dir-10 larg-49-pcento ft-labels ft-campos">
+					<label>Nome resumido</label> 
+					<input type="text" class="maiusculas" id="nomeResumido" style="font-weight: bold; font-size: 14px;" disabled th:field="*{nomeResumido}" />
+				</div>
+
+				<div class="larg-49-pcento ft-labels ft-campos">
+					<label>Razão social</label> 
+					<input  id="razaoSocial" disabled type="text" th:field="*{razaoSocial}" />
+				</div>
+
+				<div class="marg-dir-10 larg-49-pcento ft-labels ft-campos">
+					<label>Nome completo (pessoa física)</label> 
+					<input class="capitalizar" id="nomeCompleto" disabled type="text" th:field="*{nome}" />
+				</div>
+
+
+				<div class="marg-dir-5 larg-24-pcento ft-labels ft-campos">
+					<label>CNPJ</label> 
+					<input id="cnpj" disabled type="text" th:field="*{cnpj}"/>
+				</div>
+
+
+				<div class="marg-dir-5 larg-24-pcento ft-labels ft-campos">
+					<label>CPF</label> 
+					<input id="cpf" disabled type="text" th:field="*{cpf}" />
+				</div>
+
+				<div  class="marg-dir-10 larg-16-pcento ft-labels ft-campos">
+					<label>Insc.Est.</label> 
+					<input  id="inscEst" disabled type="text" th:field="*{inscEstadual}" />
+				</div>
+
+				<div class="marg-dir-10 larg-16-pcento ft-labels ft-campos">
+					<label>Insc.Munic.</label> 
+					<input  id="inscMunic" disabled type="text" th:field="*{inscMunicipal}" />
+				</div>
+
+
+				<div class="larg-100-pcento" style="text-align: center; background-color: #B0C4DE; margin-top: 40px; margin-bottom: 5px;">
+					DADOS DE CONTRATO
+				</div>
+
+
+
+				<div class="larg-20-pcento" style=" display: flex; align-items: center; flex-wrap: wrap;" >  
+					<input  id="contrato" disabled type="checkbox" value="true"  style="margin: 0px; width: 20%;" />Contrato?    
+				</div>
+
+				<div class="marg-dir-10 larg-20-pcento ft-labels ft-campos">
+					<label >Data início</label> 
+					<input id="dataInicio" disabled type="date" th:field="*{inicioContrato}" />
+				</div>
+
+
+				<div class="marg-dir-10 larg-20-pcento ft-labels ft-campos">
+					<label >Vigente / Anterior</label> 
+					<select id="vigAnt" disabled th:field="*{vigAnt}">
+						<option value="null"></option>
+						<option value="A">Anterior</option>
+						<option value="V">Vigente</option>
+					</select>
+				</div>
+
+				<div class="marg-dir-10 larg-20-pcento ft-labels ft-campos">
+					<label >Mensalidade</label> 
+					<input id="mensalidade" disabled type="text" th:field="*{mensalidade}" />
+				</div>
+
+				<div class="marg-dir-10 larg-13-pcento ft-labels ft-campos">
+					<label >Dia venc.</label> 
+					<input id="diaVenc" disabled type="number" min="1" max="31" size="2" maxlength="2" th:field="*{diaVencimento}" />
+				</div>
+
+				<div class="marg-dir-10 larg-20-pcento ft-labels ft-campos">
+					<label >Regularidade</label> 
+					<select id="regularidade" disabled th:field="*{regularidade}">
+						<option value="null"></option>
+						<option value="MENSAL">Mensal</option>
+						<option value="BIMESTRAL">Bimestral</option>
+						<option value="TRIMESTRAL">Trimestral</option>
+						<option value="QUADRIMESTRAL">Quadrimestral</option>
+						<option value="QUINQUENAL">Quinquenal</option>
+						<option value="SEMESTRAL">Semestral</option>
+						<option value="ANUAL">Anual</option>
+					</select>
+				</div>
+
+
+				<div class="marg-dir-10 larg-30-pcento ft-labels ft-campos">
+					<label >Tipo cobrança</label> 
+					<select id="tipoCobranca" disabled th:field="*{tipoCob}">
+						<option value=0></option>
+						<option value=1>BOLETO</option>
+						<option value=2>PROMISSÓRIA</option>
+						<option value=3>RECIBO</option>
+					</select>
+				</div>
+
+				<div class="marg-dir-10 larg-49-pcento ft-labels ft-campos">
+					<label >Nome administrador 1</label> 
+					<input class="capitalizar" id="nomeAdm1" disabled type="text" th:field="*{nomeAdm1}" />
+				</div>
+
+				<div class="larg-49-pcento ft-labels ft-campos">
+					<label >Telefones administrador 1</label> 
+					<input id="fonesAdm1" disabled type="text" th:field="*{fonesAdm1}" />
+				</div>
+
+				<div class="marg-dir-10 larg-49-pcento ft-labels ft-campos">
+					<label >Nome administrador 2</label> 
+					<input class="capitalizar" id="nomeAdm2" disabled type="text" th:field="*{nomeAdm2}" />
+				</div>
+
+				<div class="larg-49-pcento ft-labels ft-campos">
+					<label >Telefones administrador 2</label> 
+					<input id="fonesAdm2" disabled type="text" th:field="*{fonesAdm2}" />
+				</div>
+
+
+				<div class="larg-100-pcento ft-labels ft-campos">
+					<label >Observações</label> 
+					<textarea id="obs" disabled th:field="*{obs}"></textarea>
+				</div>
+
+
+				<div class="larg-100-pcento ft-labels ft-campos">
+					<div style="display: flex; align-content: flex-start; align-items: flex-end;">
+						<p style="font-size: 12px; font-weight: bold; margin: 0px 10px 0px 0px;">Descrição Nota Fiscal</p> 
+						<button  id="copiaDesc" disabled style="margin: 10px 10px 5px 0px;" type="button" class="botaoAlex">Copiar descrição</button>
+						<button id="atualizaDesc" disabled style="margin: 10px 10px 5px 0px;" type="button" class="botaoAlex">Atualizar descrição</button>
+					</div>
+					<textarea id="descNf" disabled th:field="*{descNf}"></textarea>
+				</div>
+
+				<div class="larg-100-pcento" style="text-align: center; background-color: #B0C4DE; margin-top: 40px; margin-bottom: 5px;">
+					LOCALIZAÇÃO E REDES SOCIAIS
+				</div>
+
+				<div class="marg-dir-5 larg-19N-pcento ft-labels ft-campos">
+					<label >CEP</label> 
+					<input id="cep" disabled type="text" th:field="*{cep}" />
+				</div>
+
+				<div class="larg-80-pcento ft-labels ft-campos">
+					<label >Logradouro</label> 
+					<input id="logradouro" disabled type="text" placeholder="Rua, Avenida, Travessa, Marginal, Praça, etc" th:field="*{logradouro}" />
+				</div>
+
+				<div class="marg-dir-5 larg-80-pcento ft-labels ft-campos">
+					<label >Endereço</label> 
+					<input id="endereco" placeholder="Duque de Caxias"  disabled type="text" th:field="*{endereco}" />
+				</div>
+
+				<div class="larg-19N-pcento ft-labels ft-campos">
+					<label >Número</label> 
+					<input id="numero" disabled type="text" th:field="*{numero}" />
+				</div>
+
+
+				<div class="marg-dir-5 larg-49-pcento ft-labels ft-campos">
+					<label >Bairro</label> 
+					<input id="bairro" disabled type="text" th:field="*{bairro}" />
+				</div>
+
+
+				<div class="marg-dir-5 larg-49-5-pcento ft-labels ft-campos">
+					<label >Cidade</label> 
+					<input id="cidade" disabled type="text" th:field="*{cidade}" />
+				</div>
+
+				<div class="marg-dir-5 larg-18-pcento ft-labels ft-campos">
+					<label >Estado</label> 
+					<input id="estado" disabled type="text" th:field="*{estado}" />
+				</div>
+
+				<div class="larg-80-pcento ft-labels ft-campos">
+					<label>Complemento</label> 
+					<input type="text" id="complemento" disabled th:field="*{complemento}" />
+				</div>
+
+				<div class="marg-dir-5 larg-70-pcento ft-labels ft-campos">
+					<label>Ponto de referência</label> 
+					<input type="text" id="pontoReferencia" disabled th:field="*{pontoReferencia}" />
+				</div>
+
+  
+				<div class="larg-29-pcento ft-labels ft-campos">
+					<label>País</label> 
+					<input type="text" id="pais" disabled th:field="*{pais}" />
+				</div>
+
+				<div class="marg-dir-5 larg-49-pcento ft-labels ft-campos">
+					<label>Email</label> 
+					<input type="text" id="email" disabled th:field="*{email}" />
+				</div>
+
+				<div class="larg-49-5-pcento ft-labels ft-campos">
+					<label>Website</label> 
+					<input type="text" id="webSite" disabled th:field="*{webSite}" />
+				</div>
+
+				<div class="marg-dir-5 larg-49-pcento ft-labels ft-campos">
+					<label>Instagram</label> 
+					<input type="text" id="instagram" disabled th:field="*{instagram}" />
+				</div>
+
+				<div class="larg-49-5-pcento ft-labels ft-campos">
+					<label>Facebook</label> 
+					<input type="text" id="facebook" disabled th:field="*{facebook}" />
+				</div>
+
+				<div class="marg-dir-5 larg-49-pcento ft-labels ft-campos">
+					<label>skype</label> 
+					<input type="text" id="skype" disabled th:field="*{skype}" />
+				</div>
+
+				<div class="larg-49-5-pcento ft-labels ft-campos">
+					<label>Twiter</label> 
+					<input type="text" id="twiter" disabled th:field="*{twiter}" />
+				</div>
+
+				<div class="marg-dir-5 larg-49-pcento ft-labels ft-campos">
+					<label>Telefones fixos</label> 
+					<input type="text" id="fonesFixos" disabled th:field="*{fonesFixos}" />
+				</div>
+
+				<div class="larg-49-5-pcento ft-labels ft-campos">
+					<label>celulares</label> 
+					<input type="text" id="celulares" disabled th:field="*{celulares}" />
+				</div>
+
+
+				<div class="larg-100-pcento" style="display: flex; align-content: center; align-items: center; flex-wrap: wrap; background-image: linear-gradient(to right, #32CD32, #32CD32);">
+					<h5 class="marg-esq-15 marg-dir-30">Whatsapp</h5>
+					
+					<div class="marg-dir-15 larg-20-pcento ft-labels ft-campos">
+						<label>País</label> 
+						<input type="text" id="whatsPais" disabled placeholder="+55" th:field="*{whatsPais}" />
+					</div>
+	
+					<div class="marg-dir-15 larg-20-pcento ft-labels ft-campos">
+						<label>DDD</label> 
+						<input type="text" id="whatsEstado" disabled placeholder="85" th:field="*{whatsEstado}" />
+					</div>
+	
+					<div class="larg-20-pcento ft-labels ft-campos">
+						<label>Número</label> 
+						<input type="text" id="whatsNum" disabled th:field="*{whatsNum}" />
+					</div>
+				</div>
+
+				<div class="larg-100-pcento" style="text-align: center; background-color: #B0C4DE; margin-top: 40px; margin-bottom: 5px;">
+					DADOS GERAIS PESSOA FÍSICA
+				</div>
+
+				<div class="marg-dir-5 larg-32-pcento ft-labels ft-campos">
+					<label>RG</label> 
+					<input type="text" id="rg" disabled th:field="*{rg}" />
+				</div>
+				
+				<div class="marg-dir-5 larg-34-pcento ft-labels ft-campos">
+					<label>Órgão emissor</label> 
+					<input type="text" id="orgaoEmissor" disabled th:field="*{orgaoEmissor}" />
+				</div>
+
+				<div class="larg-32-pcento ft-labels ft-campos">
+					<label>Data emissão</label> 
+					<input type="date" id="dataEmissao" disabled th:field="*{dataEmissao}" />
+				</div>
+				
+				
+				<div class="marg-dir-5 larg-32-pcento ft-labels ft-campos">
+					<label>Título de eleitor</label> 
+					<input type="text" id="titEleitor" disabled th:field="*{titEleitor}" />
+				</div>
+				
+				<div class="marg-dir-5 larg-34-pcento ft-labels ft-campos">
+					<label>Reservista</label> 
+					<input type="text" id="reservista" disabled th:field="*{reservista}" />
+				</div>
+
+				<div class="larg-32-pcento ft-labels ft-campos">
+					<label>Data nascimento</label> 
+					<input type="date" id="dataNasc" disabled th:field="*{dataNasc}" />
+				</div>
+
+
+				<div class="marg-dir-5 larg-32-pcento ft-labels ft-campos">
+					<label>PIS/PASEP</label> 
+					<input type="text" id="pisPasep" disabled th:field="*{pisPasep}" />
+				</div>
+				
+				<div class="marg-dir-5 larg-34-pcento ft-labels ft-campos">
+					<label>Passaporte</label> 
+					<input type="text" id="passaporte" disabled th:field="*{passaporte}" />
+				</div>
+
+				<div class="larg-32-pcento ft-labels ft-campos">
+					<label>Nacionalidade</label> 
+					<input type="text" id="nacionalidade" disabled th:field="*{nacionalidade}" />
+				</div>
+
+				<div class="marg-dir-5 larg-32-pcento ft-labels ft-campos">
+					<label>Naturalidade</label> 
+					<input type="text" id="naturalidade" disabled th:field="*{naturalidade}" />
+				</div>
+				
+				<div class="marg-dir-5 larg-34-pcento ft-labels ft-campos">
+					<label >Sexo</label> 
+					<select id="sexo" disabled th:field="*{sexo}">
+						<option value="null"></option>
+						<option value="F">Feminino</option>
+						<option value="M">Masculino</option>
+					</select>
+				</div>
+
+				<div class="larg-32-pcento ft-labels ft-campos">
+					<label>Sexo/outro</label> 
+					<input type="text" id="sexoOutro" disabled th:field="*{sexoOutro}" />
+				</div>
+
+
+
+				<div class="marg-dir-10 larg-49-pcento ft-labels ft-campos">
+					<label>Nome da mãe</label> 
+					<input type="text" id="nomeMae" disabled th:field="*{nomeMae}" />
+				</div>
+
+				<div class="larg-49-pcento ft-labels ft-campos">
+					<label>Nome do pai</label> 
+					<input type="text" id="nomePai" disabled th:field="*{nomePai}" />
+				</div>
+			</div>
+
+			<div style="margin-left: 10px; align-content: flex-end;">
+				<button id="adicionar" disabled type="submit" class="btn btn-primary">Adicionar</button>
+				<button id="limpar" type="reset"  disabled  class="btn btn-primary">Limpar campos</button>
+			</div>
+
+		</form>
+
+
+		<div class="coluna-estreita-40" style="margin: 10px;">
+
+			<div class="panel-heading">
+				<h4 class="panel-title">Clientes cadastrados</h4>
+			</div>
+			<div class="panel-body">
+				<table class="table table-sm">
+					<thead style="text-align: center">
+						<tr>
+							<th>COD</th>
+							<th>NOME RESUMIDO</th>
+							<th>CNPJ</th>
+							<th>CPF</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cf : ${cliForns}">
+							<td th:text="${cf.cod}"></td>
+							<td th:text="${cf.nomeResumido}"></td>
+							<td id="cnpjLista" style="width: 25%;" th:text="${cf.cnpj}"></td>
+							<td id="cpfLista" style="width: 20%;" th:text="${cf.cpf}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</section>
+
+
+ 
+
+
+	<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<!--	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script> -->
+ 	<script src="/js/jquery.mask.min.js"></script>
+<!-- 	<script src="/js/cadCliForn.js"></script>  --> 
+	<script src="/webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+<script>
+	
+
+	$("#cnpj, #cnpjLista").mask("00.000.000/0000-00");
+	$("#cpf, #cpfLista").mask("000.000.000-00");
+
+
+
+	function MudaJuridica()
+	{
+		document.getElementById("rdoJuridica").addEventListener("click", function(){
+	
+			var juridica = document.getElementById("rdoJuridica");
+			var fisica = document.getElementById("rdoFisica");
+		
+			if(fisica.checked){
+				var resposta = confirm("Caso mude para pessoa jurídica, todo os dados digitados serão apagados.\n\nConfirma?");
+
+				if (resposta == false){
+					fisica.checked = true;
+					juridica.checked = false;
+					return;
+				}
+
+			}
+
+		
+			if(juridica.checked){
+
+				//$('#frmClientes')[0].reset();
+				//$('#frmClientes').each (function(){
+				  //this.reset();
+				  //document.getElementById("frmClientes").reset();
+				//});
+				
+				
+				  $(':input','#frmClientes')
+				  .not(':button, :submit, :reset, :hidden, :radio, :checkbox')
+				  .val('');
+				
+				
+				
+				
+				
+				fisica.checked = false;
+				juridica.checked = true;
+
+				DesativarCamposPessoaJuridica(false);
+			    $("#cnpj, #cnpjLista").mask("00.000.000/0000-00");
+			    $("#cpf, #cpfLista").mask("000.000.000-00");
+				DesativarCamposPessoaFisica(true);
+				DesativarOutrosCampos(false);
+			    $("#cep").mask("00.000-000");
+				document.getElementById("nomeResumido").focus();
+			}
+		});
+	}
+
+
+
+
+	function Limpar()
+	{
+		document.getElementById("frmClientes").reset();
+	}
+	
+	
+	
+	function MudaFisica()
+	{
+		document.getElementById("rdoFisica").addEventListener("click", function(){
+			
+		
+			var juridica = document.getElementById("rdoJuridica");
+			var fisica = document.getElementById("rdoFisica");
+
+			
+			if(juridica.checked){
+				var resposta = confirm("Caso mude para pessoa física, todo os dados digitados serão apagados.\n\nConfirma?");
+
+				if (resposta == false){
+					fisica.checked = false;
+					juridica.checked = true;
+					return;
+				}
+			}
+
+
+
+			
+			if(fisica.checked){
+
+				//$('#frmClientes').each (function(){
+					 //this.reset();
+					 //$('#frmClientes')[0].reset();
+					 //document.getElementById("frmClientes").reset();
+					 //window.reset
+				///});
+				
+				
+				  $(':input','#frmClientes')
+				  .not(':button, :submit, :reset, :hidden, :radio, :checkbox')
+				  .val('');
+				
+				
+				
+				
+				fisica.checked = true;
+				juridica.checked = false;
+				
+				DesativarCamposPessoaJuridica(true);
+				DesativarCamposPessoaFisica(false);
+			    $("#cpf, #cpfLista").mask("000.000.000-00");
+			    $("#cnpj, #cnpjLista").mask("00.000.000/0000-00");
+				DesativarOutrosCampos(false);
+			    $("#cep").mask("00.000-000");
+				document.getElementById("nomeResumido").focus();
+			}
+		
+		});
+	
+	
+	}
+
+	
+	function DesativaTudo()
+	{
+		document.getElementById("limpar").addEventListener("click", function(){
+			DesativarCamposPessoaJuridica(true);
+			DesativarCamposPessoaFisica(true);
+			DesativarOutrosCampos(true);
+			document.getElementById("rdoJuridica").checked = false;
+			document.getElementById("rdoFisica").checked = false;
+			document.getElementById("rdoJuridica").focus();
+		});
+	}
+
+	
+	
+	function DesativaContrato()
+	{
+		document.getElementById("contrato").addEventListener("click", function(){
+			
+			if(document.getElementById("contrato").checked){
+				DesativarCamposContrato(false);
+				$("#mensalidade").mask("#.##0,00", {reverse: true});
+			    $("#diaVenc").mask("00");
+			}else{
+				DesativarCamposContrato(true);
+				LimpaCamposContrato();
+			}
+		});
+	}
+	
+	
+	
+	
+	
+	
+	function DesativarCamposPessoaJuridica(ativar)	
+	{
+		document.getElementById("nomeResumido").disabled = ativar;
+		document.getElementById("razaoSocial").disabled = ativar;
+		document.getElementById("cnpj").disabled = ativar;
+		document.getElementById("inscEst").disabled = ativar;
+		document.getElementById("inscMunic").disabled = ativar;
+	}
+	
+	
+	function DesativarCamposContrato(ativar)	
+	{
+		document.getElementById("dataInicio").disabled = ativar;
+		document.getElementById("vigAnt").disabled = ativar;
+		document.getElementById("mensalidade").disabled = ativar;
+		document.getElementById("diaVenc").disabled = ativar;
+		document.getElementById("regularidade").disabled = ativar;
+		document.getElementById("tipoCobranca").disabled = ativar;
+		document.getElementById("nomeAdm1").disabled = ativar;
+		document.getElementById("fonesAdm1").disabled = ativar;
+		document.getElementById("nomeAdm2").disabled = ativar;
+		document.getElementById("fonesAdm2").disabled = ativar;
+		document.getElementById("copiaDesc").disabled = ativar;
+		document.getElementById("atualizaDesc").disabled = ativar;
+		document.getElementById("descNf").disabled = ativar;
+		
+		$("#mensalidade").mask("#.##0,00", {reverse: true});
+	    $("#diaVenc").mask("00");
+	}
+	
+	
+	function LimpaCamposContrato()	
+	{
+		document.getElementById("dataInicio").value = null;
+		document.getElementById("vigAnt").value = null;
+		document.getElementById("mensalidade").value = null;
+		document.getElementById("diaVenc").value = null;
+		document.getElementById("regularidade").value = null;
+		document.getElementById("tipoCobranca").value = null;
+		document.getElementById("nomeAdm1").value = null;
+		document.getElementById("fonesAdm1").value = null;
+		document.getElementById("nomeAdm2").value = null;
+		document.getElementById("fonesAdm2").value = null;
+		document.getElementById("copiaDesc").value = null;
+		document.getElementById("atualizaDesc").value = null;
+		document.getElementById("descNf").value = null;
+
+	}
+
+	
+
+	
+	
+	
+	function DesativarCamposPessoaFisica(ativar)	
+	{
+		document.getElementById("nomeResumido").disabled = ativar;
+		document.getElementById("nomeCompleto").disabled = ativar;
+		document.getElementById("cpf").disabled = ativar;
+		document.getElementById("rg").disabled = ativar;
+		document.getElementById("orgaoEmissor").disabled = ativar;
+		document.getElementById("dataEmissao").disabled = ativar;
+		document.getElementById("titEleitor").disabled = ativar;
+		document.getElementById("reservista").disabled = ativar;
+		document.getElementById("dataNasc").disabled = ativar;
+		document.getElementById("pisPasep").disabled = ativar;
+		document.getElementById("passaporte").disabled = ativar;
+		document.getElementById("nacionalidade").disabled = ativar;
+		document.getElementById("naturalidade").disabled = ativar;
+		document.getElementById("sexo").disabled = ativar;
+		document.getElementById("sexoOutro").disabled = ativar;
+		document.getElementById("nomeMae").disabled = ativar;
+		document.getElementById("nomePai").disabled = ativar;
+		
+	}
+	
+	
+	
+	function DesativarOutrosCampos(ativar)	
+	{
+		document.getElementById("nomeResumido").disabled = ativar;
+		document.getElementById("contrato").disabled = ativar;
+		document.getElementById("obs").disabled = ativar;
+		document.getElementById("cep").disabled = ativar;
+		document.getElementById("logradouro").disabled = ativar;
+		document.getElementById("endereco").disabled = ativar;
+		document.getElementById("numero").disabled = ativar;
+		document.getElementById("bairro").disabled = ativar;
+		document.getElementById("cidade").disabled = ativar;
+		document.getElementById("estado").disabled = ativar;
+		document.getElementById("complemento").disabled = ativar;
+		document.getElementById("pontoReferencia").disabled = ativar;
+		document.getElementById("pais").disabled = ativar;
+		document.getElementById("email").disabled = ativar;
+		document.getElementById("webSite").disabled = ativar;
+		document.getElementById("instagram").disabled = ativar;
+		document.getElementById("facebook").disabled = ativar;
+		document.getElementById("skype").disabled = ativar;
+		document.getElementById("twiter").disabled = ativar;
+		document.getElementById("fonesFixos").disabled = ativar;
+		document.getElementById("celulares").disabled = ativar;
+		document.getElementById("whatsPais").disabled = ativar;
+		document.getElementById("whatsEstado").disabled = ativar;
+		document.getElementById("whatsNum").disabled = ativar;
+		document.getElementById("adicionar").disabled = ativar;
+		document.getElementById("limpar").disabled = ativar;
+		$("#cep").mask("00.000-000");
+	
+	}
+
+	
+	//Quando se clica em 'Adicionar' e um erro ocorre, a página é recarregada. Nesse momento
+	//existem vários campos preenchidos e TODOS OS CAMPOS ficam DESATIVADOS, pois todos eles estão 'DISABLED' por padrão
+	//Essa função serve para ativar todos os campos, caso eles estejam preenchidos
+	function AtivaCasoPreenchido()
+	{
+			var juridica = document.getElementById("rdoJuridica");
+			var fisica = document.getElementById("rdoFisica");
+			var contrato = document.getElementById("contrato");
+
+
+
+		if(juridica.checked){
+			DesativarCamposPessoaJuridica(false);
+			DesativarCamposPessoaFisica(true);
+			DesativarOutrosCampos(false);
+		}
+
+		if(fisica.checked){
+				DesativarCamposPessoaJuridica(true);
+				DesativarCamposPessoaFisica(false);
+				DesativarOutrosCampos(false);
+		}
+		
+		
+			if(contrato.checked){
+				DesativarCamposContrato(false);
+			}
+		
+	}
+
+	
+	
+	
+	
+	
+	window.addEventListener("load", MudaJuridica());
+	window.addEventListener("load", MudaFisica());
+	window.addEventListener("load", DesativaTudo());
+	window.addEventListener("load", DesativaContrato());
+	window.addEventListener("load", AtivaCasoPreenchido());  //pageshow
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

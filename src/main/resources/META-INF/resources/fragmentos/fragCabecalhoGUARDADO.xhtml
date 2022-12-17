@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<meta name="viewport" content="width=device-width" />
+
+
+
+	<style>
+@font-face {
+	font-family: alex;
+	src: url(fontes/Comfortaa/Comfortaa-VariableFont_wght.ttf);
+}
+
+.ui-menuitem-text {
+	
+}
+
+.iconePdfTxt {
+	background-size: cover;
+	height: 5em;
+	width: 5em;
+	margin-right: 5px;
+	position: relative;
+	/*top: 2px;*/
+	background-image: url('imagens/pdftxt.png') !important;
+	background-repeat: no-repeat;
+	align-self: stretch;
+}
+
+.iconePdfWord {
+	background-size: cover;
+	height: 2em;
+	width: 2em;
+	margin-right: 5px;
+	position: relative;
+	/*top: 2px;*/
+	background-image: url('imagens/pdfWord.png') !important;
+	background-repeat: no-repeat;
+	align-self: stretch;
+}
+</style>
+
+
+
+</h:head>
+
+
+
+<h:body>
+
+
+	<h:form>
+
+
+		<p:panel style="display: flex; margin-top: 10px; width: 100%;">
+
+			<div style="display: flex; align-items: center;  width: 100%;">
+
+				<p:graphicImage url="/imagens/PDFPagesMenor.png" styleClass="tamanho-logo" />
+
+				<p:megaMenu orientation="horizontal" autoDisplay="false"
+					style="border: none;" >
+
+					<p:submenu label="Serviços" icon="ui-icon-">
+						<p:column>
+							<p:submenu label="Conversões" icon="pi pi-fw pi-video">
+								<p:menuitem id="pdfTxt" value="PDF para TXT" icon="iconePdfTxt" />
+								<p:menuitem value="PDF para Word" icon="iconePdfWord" />
+							</p:submenu>
+							<p:submenu label="Video 2">
+								<p:menuitem value="Video 2.1" />
+								<p:menuitem value="Video 2.2" />
+							</p:submenu>
+						</p:column>
+
+						<p:column>
+							<p:submenu label="Video 3">
+								<p:menuitem value="Video 3.1" />
+								<p:menuitem value="Video 3.2" />
+							</p:submenu>
+							<p:submenu label="Video 4">
+								<p:menuitem value="Video 4.1" />
+								<p:menuitem value="Video 4.2" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+
+					<p:submenu label="Users" icon="pi pi-fw pi-users">
+
+						<p:column>
+							<p:submenu label="User 1">
+								<p:menuitem value="User 1.1" />
+								<p:menuitem value="User 1.2" />
+							</p:submenu>
+							<p:submenu label="User 2">
+								<p:menuitem value="User 2.1" />
+								<p:menuitem value="User 2.2" />
+							</p:submenu>
+						</p:column>
+
+						<p:column>
+							<p:submenu label="User 3">
+								<p:menuitem value="User 3.1" />
+								<p:menuitem value="User 3.2" />
+							</p:submenu>
+							<p:submenu label="User 4">
+								<p:menuitem value="User 4.1" />
+								<p:menuitem value="User 4.2" />
+							</p:submenu>
+						</p:column>
+						<p:column>
+							<p:submenu label="User 5">
+								<p:menuitem value="User 5.1" />
+								<p:menuitem value="User 5.2" />
+							</p:submenu>
+							<p:submenu label="User 6">
+								<p:menuitem value="User 6.1" />
+								<p:menuitem value="User 6.2" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+
+					<p:submenu label="Events" icon="pi pi-fw pi-calendar">
+						<p:column>
+							<p:submenu label="Event 1">
+								<p:menuitem value="Event 1.1" />
+								<p:menuitem value="Event 1.2" />
+							</p:submenu>
+							<p:submenu label="Event 2">
+								<p:menuitem value="Event 2.1" />
+								<p:menuitem value="Event 2.2" />
+							</p:submenu>
+						</p:column>
+
+						<p:column>
+							<p:submenu label="Event 3">
+								<p:menuitem value="Event 3.1" />
+								<p:menuitem value="Event 3.2" />
+							</p:submenu>
+							<p:submenu label="Event 4">
+								<p:menuitem value="Event 4.1" />
+								<p:menuitem value="Event 4.2" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+
+					<p:submenu label="Settings" icon="pi pi-fw pi-cog">
+						<p:column>
+							<p:submenu label="Setting 1">
+								<p:menuitem value="Setting 1.1" />
+								<p:menuitem value="Setting 1.2" />
+							</p:submenu>
+							<p:submenu label="Setting 2">
+								<p:menuitem value="Setting 2.1" />
+								<p:menuitem value="Setting 2.2" />
+							</p:submenu>
+							<p:submenu label="Setting 3">
+								<p:menuitem value="Setting 3.1" />
+								<p:menuitem value="Setting 3.2" />
+							</p:submenu>
+						</p:column>
+
+						<p:column>
+							<p:submenu label="Setting 4">
+								<p:menuitem value="Setting 4.1" />
+								<p:menuitem value="Setting 4.2" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+				</p:megaMenu>
+			</div>
+		</p:panel>
+	</h:form>
+
+
+
+
+
+</h:body>
+</html>

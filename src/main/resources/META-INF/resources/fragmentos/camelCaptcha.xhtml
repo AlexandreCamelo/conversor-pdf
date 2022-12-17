@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<!-- 	<meta name="viewport" content="width=device-width" /> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="content-language" content="pt-br" />
+	<meta http-equiv="content-type" content="text/html" />
+	<meta http-equiv="cache-control" content="public" />
+	<meta http-equiv="pragma" content="public" />
+	<meta name="copyright" content="2020 - Alexandre Fernandes Camelo" />
+	<meta name="author" content="Alexandre Fernandes Camelo" />
+	<meta name="description"
+		content="Conversoes PDF. Converta DE e PARA PDF. Diversas ferramentas para facilitar sua vida, trabalhando com PDF's" />
+	<meta name="keywords"
+		content="PDF, converter PDF, PDF para word, PDF para texto, PDF para HTML, PDF para imagem, imagem para PDF, OCR PDF, PDF OCR, ferramentas PDF" />
+	<meta name="rating" content="general" />
+	<meta name="robots" content="follow" />
+
+	<link rel="icon" href="imagens/favicon64.png" />
+
+	<f:event listener="#{configPrimefacesTemas.mudaTema('saga')}"
+		type="preRenderView"></f:event>
+
+
+
+<style>
+
+@font-face {
+	font-family: alex;
+	src: url(../fontes/Comfortaa/Comfortaa-VariableFont_wght.ttf);
+}
+
+.fontePadrao {
+	font-family: alex !important;
+	color: #1673b1 !important;
+}
+
+.fonte10{
+	font-size: 10px !important;
+}
+
+.fonte11{
+	font-size: 11px !important;
+}
+
+.fonte12{
+	font-size: 12px !important;
+}
+
+
+</style>
+
+
+
+</h:head>
+
+<h:body>
+
+	
+
+		<div style="display: flex; flex-direction: column; width: 300px; align-items: center;">
+			<p:outputLabel value="Decifre o quebra cabeças" styleClass="fontePadrao"/>
+			<p:outputLabel value="(podem existir letras, números e símbolos)" styleClass="fontePadrao fonte11"/>
+			<p:graphicImage id="quebra-cabecas"
+				value="#{camelCaptchaBean.imagemQuebraCabecas}" cache="false" stream="false" />
+				
+			<div style="display: flex; width: 100%; justify-content: flex-start; justify-content: center;">
+				<p:inputText value="#{camelCaptchaBean.valorCaptchaUsuario}"
+					cache="false" style="margin: 2px 0px 0px 0px !important;"/>
+				<p:commandButton icon="pi pi-refresh"
+					actionListener="#{camelCaptchaBean.atualizarCaptcha}" process="@this"
+					update="quebra-cabecas"  style="margin: 2px 0px 0px 0px !important;"/>
+			</div>
+
+		</div>
+
+	
+
+
+</h:body>
+</html>

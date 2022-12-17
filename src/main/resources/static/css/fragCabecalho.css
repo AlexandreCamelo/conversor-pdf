@@ -1,0 +1,262 @@
+@charset "ISO-8859-1";
+/*FONTES INSTALADAS */
+@font-face {
+	font-family: alex;
+	src: url(../fontes/Comfortaa/Comfortaa-VariableFont_wght.ttf);
+}
+
+body {
+	padding-top: 100px;
+}
+
+.menuComputador {
+	display: flex !important;
+	width: 98%;
+	margin: 5px 10px 0px 10px !important;
+	border: 2px solid #C0C0C0 !important;
+	border-radius: 10px;
+	padding-left: 10px !important;
+	position: fixed;
+	top: 0;
+	border: 2px solid #C0C0C0 !important;
+	background-color: #FFF !important;
+	
+}
+
+.menuCelular {
+	display: none !important;
+}
+
+.ui-menuitem-text {
+	font-family: alex;
+	font-size: 12px;
+	font-weight: bold;
+	
+}
+
+#j_idt10\:megaAlex>ul>li:nth-child(1)>a>span.ui-menuitem-text {
+	font-size: 20px;
+}
+
+#j_idt10\:megaAlex>ul>li:nth-child(2)>a>span.ui-menuitem-text {
+	font-size: 20px;
+}
+
+#j_idt10\:megaAlex>ul>li:nth-child(3)>a>span.ui-menuitem-text {
+	font-size: 20px;
+}
+
+/*PARA QUE OS ITENS DO MENU NÃO ULTRAPASSEM O TAMANHO DO CONTAINER*/
+#j_idt10\:megaAlex>ul>li.ui-widget.ui-menuitem.ui-corner-all.ui-menu-parent.ui-menuitem-active>ul
+	{
+	padding: 10px !important;
+}
+
+.tamanho-logo-menu {
+	max-height: 70px !important;
+	max-width: auto !important;
+	width: auto !important;
+	height: auto !important;
+}
+
+.fontePadrao {
+	font-family: alex !important;
+	color: #1673b1 !important;
+}
+
+.fonte10 {
+	font-size: 10px !important;
+}
+
+.fonte11 {
+	font-size: 11px !important;
+}
+
+.fonte12 {
+	font-size: 12px !important;
+}
+
+.fontePreta {
+	color: #000 !important;
+}
+
+.fonteTamanhoImagens {
+	font-size: 20px !important;
+}
+
+.iconeParaPDF {
+	background-size: cover;
+	height: 73px;
+	width: 50px;
+	margin-right: 5px;
+	position: relative;
+	background-image: url('../imagens/paraPDFRetMenor.png') !important;
+	background-repeat: no-repeat;
+	align-self: stretch;
+}
+
+.iconeDePDF {
+	background-size: cover;
+	height: 73px;
+	width: 50px;
+	/*margin-right: 5px;*/
+	position: relative;
+	/*top: 2px;*/
+	background-image: url('../imagens/dePDFRetMenor.png') !important;
+	background-repeat: no-repeat;
+	align-self: stretch;
+}
+
+.iconeEditarPDF {
+	background-size: cover;
+	/*
+	height: 73px;
+	width: 50px;
+	*/
+	height: 73px;
+	width: 50px;
+	position: relative;
+	background-image: url('../imagens/editarPDFRetMenor.png') !important;
+	background-repeat: no-repeat;
+	align-self: stretch;
+}
+
+.iconeGirarPDF {
+	background-size: cover;
+	height: 60px;
+	width: 60px;
+	position: relative;
+	background-image: url('../imagens/girarPDFMenor.png') !important;
+	background-repeat: no-repeat;
+	align-self: stretch;
+}
+
+.iconeImagemPDF {
+	background-size: cover;
+	height: 60px;
+	width: 60px;
+	position: relative;
+	background-image: url('../imagens/imagemPDFMenor.png') !important;
+	background-repeat: no-repeat;
+	align-self: stretch;
+}
+
+.iconeTxtPDF {
+	background-size: cover;
+	height: 60px;
+	width: 60px;
+	position: relative;
+	background-image: url('../imagens/txtPDFMenor.png') !important;
+	background-repeat: no-repeat;
+	align-self: stretch;
+}
+
+.iconeSepararPDF {
+	background-size: cover;
+	height: 70px;
+	width: 70px;
+	position: relative;
+	background-image: url('../imagens/separarPDFMenor.png') !important;
+	background-repeat: no-repeat;
+	align-self: stretch;
+}
+
+.iconePDFDocx {
+	background-size: cover;
+	height: 60px;
+	width: 60px;
+	position: relative;
+	background-image: url('../imagens/pdfDocxMenor.png') !important;
+	background-repeat: no-repeat;
+	align-self: stretch;
+}
+
+.iconePDFImagem {
+	background-size: cover;
+	height: 60px;
+	width: 60px;
+	position: relative;
+	background-image: url('../imagens/pdfImagemMenor.png') !important;
+	background-repeat: no-repeat;
+	align-self: stretch;
+}
+
+.iconePDFTxt {
+	background-size: cover;
+	height: 60px;
+	width: 60px;
+	position: relative;
+	background-image: url('../imagens/pdfTxtMenor.png') !important;
+	background-repeat: no-repeat;
+	align-self: stretch;
+}
+
+.iconeInicio {
+	background-size: cover;
+	height: 70px;
+	width: 70px;
+	position: relative;
+	background-image: url('../imagens/casaMenor.png') !important;
+	background-repeat: no-repeat;
+	align-self: stretch;
+}
+
+#j_idt10\:j_idt192>ul>li:nth-child(1)>h3 {
+	font-size: 20px !important;
+}
+
+#j_idt10\:j_idt192>ul>li:nth-child(4)>h3 {
+	font-size: 20px !important;
+	margin-top: 20px;
+}
+
+
+
+@media screen and (min-width: 0px) and (max-width: 750px) {
+	body {
+		padding-top: 100px !important;
+	}
+	.menuComputador {
+		display: none !important;
+	}
+	.menuCelular {
+		display: flex !important;
+		width: 90% !important;
+		margin: 0px 10px 0px 10px !important;
+		padding: 20px 30px 20px 20px !important;
+		position: fixed !important;
+		top: 0px;
+		right: 10px;
+		left: 5px;
+		background-color: #FFF;
+		border-bottom: 2px groove #C0C0C0;
+	}
+}
+
+
+
+
+
+
+/*CELULARES e TABLETS*/
+@media screen and (min-width: 751px) and (max-width: 1200px) {
+	body {
+		padding-top: 100px !important;
+	}
+	.menuComputador {
+		display: none !important;
+	}
+	.menuCelular {
+		display: flex !important;
+		width: 90% !important;
+		margin: 0px 10px 0px 10px !important;
+		padding: 20px 30px 20px 20px !important;
+		position: fixed !important;
+		top: 0px;
+		right: 10px;
+		left: 5px;
+		background-color: #FFF;
+		border-bottom: 2px groove #C0C0C0;
+	}
+}
+
