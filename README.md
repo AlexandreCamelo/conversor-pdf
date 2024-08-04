@@ -2,7 +2,7 @@
 
 Projeto completo (backend e frontend), construído em Spring Boot, tendo como front end, o JSF/primefaces.
 
-Utilização da biblioteca TESSERACT para reconhecimento te texto.
+Utilização da biblioteca TESSERACT para reconhecimento de texto.
 
 Os formatos de conversão são vários (txt, docx, imagens, etc).
 
